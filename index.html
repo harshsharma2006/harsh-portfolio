@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Sharma - Data Science Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #60a5fa, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #60a5fa;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #60a5fa;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(90deg, #60a5fa, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #60a5fa, #22d3ee);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        #home {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding-top: 8rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.75rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #60a5fa, #22d3ee, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #16a34a;
+            color: white;
+        }
+
+        .btn-tertiary {
+            background: #475569;
+            color: white;
+        }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(34, 211, 238, 0.2));
+            border-radius: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            overflow: hidden;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(34, 211, 238, 0.1));
+        }
+
+        /* Sections with alternating backgrounds */
+        .bg-dark {
+            background: rgba(30, 41, 59, 0.3);
+        }
+
+        /* Content Cards */
+        .content-box {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s;
+        }
+
+        .content-box:hover {
+            border-color: #60a5fa;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+        }
+
+        .content-box p {
+            color: #cbd5e1;
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Strength Cards */
+        .strength-card {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.5), rgba(15, 23, 42, 0.5));
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strength-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(96, 165, 250, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+        }
+
+        .strength-card:hover::before {
+            right: -150%;
+        }
+
+        .strength-card:hover {
+            transform: translateY(-10px);
+            border-color: #60a5fa;
+            box-shadow: 0 15px 40px rgba(96, 165, 250, 0.3);
+        }
+
+        .strength-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .strength-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .strength-card p {
+            color: #cbd5e1;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Education Cards */
+        .edu-card {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s;
+        }
+
+        .edu-card:hover {
+            border-color: #60a5fa;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+        }
+
+        .edu-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #60a5fa;
+        }
+
+        .edu-card .school {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .edu-card p {
+            color: #cbd5e1;
+        }
+
+        /* Experience Cards */
+        .exp-card {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.3));
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s;
+        }
+
+        .exp-card:hover {
+            border-color: #60a5fa;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+        }
+
+        .exp-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-card .company {
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .exp-card .duration {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .exp-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exp-card li {
+            color: #cbd5e1;
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .exp-card li:before {
+            content: "▹";
+            color: #60a5fa;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Featured Project */
+        .featured-project {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(88, 28, 135, 0.4));
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            margin-bottom: 3rem;
+            transition: all 0.3s;
+        }
+
+        .featured-project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(96, 165, 250, 0.3);
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: #2563eb;
+            padding: 0.3rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        .project-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .project-details h3 {
+            font-size: 1.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-details .date {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .project-details p {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-features li {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            color: #cbd5e1;
+        }
+
+        .bullet {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(37, 99, 235, 0.3);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s;
+        }
+
+        .tech-tag:hover {
+            background: rgba(37, 99, 235, 0.5);
+            border-color: #60a5fa;
+        }
+
+        .highlight-box {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s;
+        }
+
+        .highlight-box:hover {
+            border-color: #60a5fa;
+            transform: translateX(5px);
+        }
+
+        .highlight-box h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box p {
+            color: #cbd5e1;
+            font-size: 0.875rem;
+        }
+
+        /* Project Cards */
+        .project-card {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.3));
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: #60a5fa;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+        }
+
+        .project-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card p {
+            color: #cbd5e1;
+        }
+
+        /* Contact Section */
+        .contact-intro {
+            text-align: center;
+            color: #cbd5e1;
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 0.75rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .contact-item:hover {
+            background: rgba(30, 41, 59, 0.8);
+            transform: translateY(-5px);
+            border-color: #60a5fa;
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #60a5fa;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-item .label {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            color: #60a5fa;
+        }
+
+        /* Resume Section */
+        .resume-container {
+            background: white;
+            color: #1e293b;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 1100px;
+            margin: 0 auto 2rem;
+        }
+
+        .resume-header {
+            background: linear-gradient(90deg, #2563eb, #0891b2);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .resume-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-header .subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .resume-header .info {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .resume-body {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0;
+        }
+
+        .resume-main {
+            padding: 2rem;
+            border-right: 2px solid #e2e8f0;
+        }
+
+        .resume-sidebar {
+            padding: 2rem;
+            background: #f8fafc;
+        }
+
+        .resume-section {
+            margin-bottom: 2rem;
+        }
+
+        .resume-section h3 {
+            color: #2563eb;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2563eb;
+            text-transform: uppercase;
+        }
+
+        .resume-section h4 {
+            color: #1e293b;
+            margin-bottom: 0.3rem;
+        }
+
+        .resume-section .sub {
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .resume-section p {
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .resume-section ul {
+            list-style: disc;
+            margin-left: 1.2rem;
+            color: #475569;
+        }
+
+        .resume-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #1d4ed8;
+            transform: scale(1.05);
+        }
+
+        .download-note {
+            text-align: center;
+            color: #94a3b8;
+            margin-top: 1rem;
+        }
+
+        /* Goals Section */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .goal-card {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.3));
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s;
+        }
+
+        .goal-card:hover {
+            border-color: #60a5fa;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+        }
+
+        .goal-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .goal-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #60a5fa;
+        }
+
+        .goal-card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            padding: 2rem;
+            text-align: center;
+            color: #94a3b8;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #2563eb;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #1d4ed8;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(30, 41, 59, 0.98);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            #home {
+                grid-template-columns: 1fr;
+                padding-top: 6rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .project-content {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .resume-body {
+                grid-template-columns: 1fr;
+            }
+
+            .resume-main {
+                border-right: none;
+                border-bottom: 2px solid #e2e8f0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media print {
+            nav, footer, .download-btn, .download-note, .btn-group, .scroll-top {
+                display: none;
+            }
+            
+            section {
+                padding: 1rem;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="scrollToSection('home')">Harsh Sharma</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="scrollToSection('home')" class="nav-link">Home</a></li>
+                <li><a href="#about" onclick="scrollToSection('about')" class="nav-link">About</a></li>
+                <li><a href="#strengths" onclick="scrollToSection('strengths')" class="nav-link">Strengths</a></li>
+                <li><a href="#education" onclick="scrollToSection('education')" class="nav-link">Education</a></li>
+                <li><a href="#experience" onclick="scrollToSection('experience')" class="nav-link">Experience</a></li>
+                <li><a href="#expertise" onclick="scrollToSection('expertise')" class="nav-link">Expertise</a></li>
+                <li><a href="#projects" onclick="scrollToSection('projects')" class="nav-link">Projects</a></li>
+                <li><a href="#why-me" onclick="scrollToSection('why-me')" class="nav-link">Why Me</a></li>
+                <li><a href="#goals" onclick="scrollToSection('goals')" class="nav-link">Goals</a></li>
+                <li><a href="#resume" onclick="scrollToSection('resume')" class="nav-link">Resume</a></li>
+                <li><a href="#contact" onclick="scrollToSection('contact')" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>Harsh Sharma</h1>
+            <p>Aspiring Data Analyst | B.Tech CSE (Data Science) Student | Python & Analytics Specialist</p>
+            <div class="btn-group">
+                <a href="https://linkedin.com/in/harsh-sharma8377" target="_blank" class="btn btn-primary">
+                    🔗 Connect on LinkedIn
+                </a>
+                <button onclick="scrollToSection('resume')" class="btn btn-secondary">
+                    📄 View Resume
+                </button>
+                <a href="https://github.com/harshsharma2006" target="_blank" class="btn btn-tertiary">
+                    💻 View GitHub
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/450x450/1e3a8a/60a5fa?text=Harsh+Sharma" alt="Harsh Sharma">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-dark">
+        <h2 class="section-title">About Me</h2>
+        <div class="content-box">
+            <p>I'm a B.Tech Computer Science and Engineering student specializing in Data Science at Lingaya's Vidyapeeth, passionate about transforming data into actionable insights. Currently interning at Aishwi Technologies, I combine technical expertise with problem-solving drive.</p>
+            <p>My foundation spans Python, data analysis, and visualization. I'm committed to continuous learning and building a career in data-driven decision-making and machine learning applications.</p>
+        </div>
+    </section>
+
+    <!-- Core Strengths -->
+    <section id="strengths">
+        <h2 class="section-title">Core Strengths</h2>
+        <div class="grid-3">
+            <div class="strength-card">
+                <div class="icon">💻</div>
+                <h3>Technical Skills</h3>
+                <p>Python programming, EDA, Matplotlib, Pandas, data visualization and analytics.</p>
+            </div>
+            <div class="strength-card">
+                <div class="icon">📊</div>
+                <h3>Professional Traits</h3>
+                <p>Quick learner, collaborative, detail-oriented, solution-driven, and disciplined.</p>
+            </div>
+            <div class="strength-card">
+                <div class="icon">💡</div>
+                <h3>Soft Skills</h3>
+                <p>Effective communication, teamwork, leadership potential, and community engagement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="bg-dark">
+        <h2 class="section-title">Educational Journey</h2>
+        <div class="grid-3">
+            <div class="edu-card">
+                <h3>Secondary Education</h3>
+                <p class="school">Nidhi Public Sr. Sec. School (Class 10th, 2021-2022)</p>
+                <p>Strong academic foundation and core subjects.</p>
+            </div>
+            <div class="edu-card">
+                <h3>Senior Secondary Education</h3>
+                <p class="school">Vidya Mandir Public School (PCM Stream, Class 12th)</p>
+                <p>Strong foundation in mathematics and science.</p>
+            </div>
+            <div class="edu-card">
+                <h3>B.Tech CSE (Data Science)</h3>
+                <p class="school">Lingaya's Vidyapeeth (July 2024 - June 2028)</p>
+                <p>Building expertise in analytics, AI, and machine learning.</p>
+            </div>
+        </div>
+        <div style="max-width: 700px; margin: 2rem auto 0;">
+            <div class="edu-card">
+                <h3>Professional Certification</h3>
+                <p class="school">Data Analytics Essentials - Cisco Networking Academy</p>
+                <p>Completed with hands-on projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience -->
+    <section id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="grid-2">
+            <div class="exp-card">
+                <h3>Data Analyst Intern</h3>
+                <p class="company">Aishwi Technologies</p>
+                <p class="duration">July - November 2025 (Remote)</p>
+                <ul>
+                    <li>Collaborated with Data & Analytics team led by Sonti Ruthvik Sree Ranga</li>
+                    <li>Worked on real-world datasets and practical analysis tasks</li>
+                    <li>Enhanced problem-solving and technical skills through projects</li>
+                    <li>Gained exposure to industry-standard analytical tools</li>
+                </ul>
+            </div>
+            <div class="exp-card">
+                <h3>NSS Volunteer</h3>
+                <p class="company">Lingaya's Vidyapeeth</p>
+                <p class="duration">July 2025 - Present</p>
+                <ul>
+                    <li>Community service and cleanliness drives</li>
+                    <li>Social awareness campaigns and environmental initiatives</li>
+                    <li>Youth leadership development through teamwork</li>
+                    <li>Promoting social responsibility and sustainability</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Expertise -->
+    <section id="expertise" class="bg-dark">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="grid-2">
+            <div class="exp-card">
+                <div class="icon" style="font-size: 2.5rem;">🐍</div>
+                <h3>Python Programming</h3>
+                <p style="color: #cbd5e1;">Core programming language for data analysis, scripting, and automation tasks.</p>
+            </div>
+            <div class="exp-card">
+                <div class="icon" style="font-size: 2.5rem;">📈</div>
+                <h3>Data Visualization</h3>
+                <p style="color: #cbd5e1;">Matplotlib expertise for creating compelling visual representations of insights.</p>
+            </div>
+            <div class="exp-card">
+                <div class="icon" style="font-size: 2.5rem;">🗄️</div>
+                <h3>EDA & Analytics</h3>
+                <p style="color: #cbd5e1;">Exploratory Data Analysis using Pandas for data cleaning and transformation.</p>
+            </div>
+            <div class="exp-card">
+                <div class="icon" style="font-size: 2.5rem;">🧩</div>
+                <h3>Problem Solving</h3>
+                <p style="color: #cbd5e1;">Analytical thinking and solution-driven approach to complex data challenges.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Projects -->
+    <section id="projects">
+        <h2 class="section-title">Academic Projects & Learning</h2>
+        <p class="contact-intro">Throughout my B.Tech programme, I've engaged in hands-on projects applying data science principles to real-world scenarios. My practical experience includes:</p>
+        
+        <!-- Featured Project -->
+        <div class="featured-project">
+            <span class="featured-badge">Featured Project</span>
+            <div class="project-content">
+                <div class="project-details">
+                    <h3>Biometric Attendance System</h3>
+                    <p class="date">January 2025 - May 2025</p>
+                    <p>An innovative automated attendance tracking solution combining fingerprint biometric authentication with real-time photo capture for enhanced security and verification.</p>
+                    <ul class="project-features">
+                        <li><span class="bullet" style="background: #60a5fa;"></span>Developed automated attendance system using fingerprint biometric authentication coupled with real-time photo capture</li>
+                        <li><span class="bullet" style="background: #22d3ee;"></span>Engineered database to reduce manual entry errors by an estimated 90%</li>
+                        <li><span class="bullet" style="background: #a855f7;"></span>Integrated fingerprint scanning and data processing modules for efficient tracking</li>
+                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Biometric SDK</span>
+                        <span class="tech-tag">Database</span>
+                        <span class="tech-tag">Image Processing</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="highlight-box">
+                        <h4 style="color: #60a5fa;">🔐 Security Features</h4>
+                        <p>Fingerprint authentication + Real-time photo capture</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4 style="color: #22d3ee;">📊 Efficiency Gains</h4>
+                        <p>90% reduction in manual entry errors</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4 style="color: #a855f7;">⚡ Performance</h4>
+                        <p>Fast, reliable, and efficient tracking system</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-3">
+            <div class="project-card">
+                <div class="project-number" style="color: #60a5fa;">1</div>
+                <h3>Cognifyz Technologies Collaboration</h3>
+                <p>Contributed to practical Data Science tasks using industry tools and methodologies.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number" style="color: #22d3ee;">2</div>
+                <h3>Cisco Academy Certification</h3>
+                <p>Completed comprehensive data analytics essentials training with practical applications.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number" style="color: #a855f7;">3</div>
+                <h3>Continuous Learning</h3>
+                <p>Pursuing additional certifications and online courses in AI, ML, and advanced analytics.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Hire Me -->
+    <section id="why-me" class="bg-dark">
+        <h2 class="section-title">Why Hire Me?</h2>
+        <div class="grid-2">
+            <div class="exp-card">
+                <h3>Entry-Level Ready</h3>
+                <p style="color: #cbd5e1;">Fresh perspective combined with solid technical foundation and internship experience.</p>
+            </div>
+            <div class="exp-card">
+                <h3>Growth Mindset</h3>
+                <p style="color: #cbd5e1;">Quick learner eager to master tools and technologies, adapt to challenges, and grow with the organization.</p>
+            </div>
+            <div class="exp-card">
+                <h3>Strong Work Ethic</h3>
+                <p style="color: #cbd5e1;">Disciplined, detail-oriented, and committed to delivering quality work on time.</p>
+            </div>
+            <div class="exp-card">
+                <h3>Team Player</h3>
+                <p style="color: #cbd5e1;">Collaborative spirit with proven leadership experience through NSS and event coordination.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Drives Me -->
+    <section id="goals">
+        <h2 class="section-title">What Drives Me</h2>
+        <div class="goals-grid">
+            <div class="goal-card">
+                <div class="goal-icon">🎯</div>
+                <h3>Career Goals</h3>
+                <p>To become a skilled Data Analyst, leveraging analytics and machine learning to solve complex business problems and drive data-driven decision making in organizations.</p>
+            </div>
+            <div class="goal-card">
+                <div class="goal-icon">🌱</div>
+                <h3>Learning Philosophy</h3>
+                <p>Committed to continuous learning and staying updated with the latest trends in data science, AI, and analytics through courses, certifications, and hands-on projects.</p>
+            </div>
+            <div class="goal-card">
+                <div class="goal-icon">💪</div>
+                <h3>Core Values</h3>
+                <p>Integrity, excellence, collaboration, and social responsibility guide my professional journey and community engagement through NSS volunteering.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="bg-dark">
+        <h2 class="section-title">My Resume</h2>
+        <div class="resume-container">
+            <div class="resume-header">
+                <h1>HARSH SHARMA</h1>
+                <p class="subtitle">Data Science Student</p>
+                <div class="info">
+                    <span>📞 8377859493</span>
+                    <span>📧 harshsharmashar8377@gmail.com</span>
+                    <span>📍 Faridabad, Haryana</span>
+                </div>
+            </div>
+            <div class="resume-body">
+                <div class="resume-main">
+                    <div class="resume-section">
+                        <h3>Profile</h3>
+                        <p>A highly motivated and results-driven 2nd-Year B.Tech Data Science student with a strong academic foundation in Python programming and data analysis. Experienced in technical project development and event coordination. Committed to applying technical knowledge and teamwork abilities to solve practical problems in a professional setting.</p>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>Education</h3>
+                        <h4>B.Tech. in Data Science</h4>
+                        <p class="sub">Lingaya's Vidyapeeth, Faridabad | 2024 - Present</p>
+
+                        <h4>Class 12 in PCM</h4>
+                        <p class="sub">Vidya Mandir Public School, Fbd. | 2023 - 2024</p>
+
+                        <h4>Class 10</h4>
+                        <p class="sub">Nidhi Public Sr. Sec. School, Fbd. | 2021 - 2022</p>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>Personal Projects</h3>
+                        <h4>Biometric Attendance System</h4>
+                        <p class="sub">01/2025 – 05/2025</p>
+                        <ul>
+                            <li>Developed an automated attendance system using fingerprint biometric authentication coupled with real-time photo capture for enhanced security and verification.</li>
+                            <li>Engineered the database to record and store attendee photos simultaneously with attendance logging, reducing manual entry errors by an estimated 90%.</li>
+                            <li>Integrated fingerprint scanning and data processing modules to ensure efficient, reliable tracking.</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>Extracurricular Achievements</h3>
+                        <ul>
+                            <li>NSS Volunteer, Lingaya's Vidyapeeth: Participated in community development and social responsibility initiatives, demonstrating strong teamwork and leadership.</li>
+                            <li>International Conference Coordinator (04/2025): Successfully managed logistics and scheduling for a major international conference event.</li>
+                            <li>Tech Fest Coordinator (03/2025): Coordinated key activities and teams for the annual college Technology Festival.</li>
+                            <li>Blockchain Yatra Organizing Team Member (08/2024).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="resume-sidebar">
+                    <div class="resume-section">
+                        <h3>Skills</h3>
+                        <h4>Programming Languages:</h4>
+                        <p>Python, C/C++</p>
+                        
+                        <h4>Data Tools:</h4>
+                        <p>SQL, Pandas, NumPy, Matplotlib, Git, MS Excel</p>
+                        
+                        <h4>Core Concepts:</h4>
+                        <p>Data Analytic, System Integration, Design Thinking</p>
+                        
+                        <h4>Soft Skills:</h4>
+                        <p>Leadership, Teamwork, Problem-solving, Communication</p>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>Awards & Certifications</h3>
+                        <ul>
+                            <li>Python Basic (03/2025)</li>
+                            <li>Energy Literacy - NPTEL (02/2025)</li>
+                            <li>Introduction to Cybersecurity (12/2024 – 02/2025)</li>
+                            <li>Pariksha Pe Charcha (12/2021)</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>Languages</h3>
+                        <p><strong>Hindi:</strong> Full Professional Proficiency</p>
+                        <p><strong>English:</strong> Working Proficiency</p>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>Contact</h3>
+                        <p>📱 8377859493</p>
+                        <p>📧 harshsharmashar8377@gmail.com</p>
+                        <p>🔗 linkedin.com/in/harsh-sharma8377</p>
+                        <p>💻 github.com/harshsharma2006</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="download-btn" onclick="window.print()">
+            📥 Download Resume (PDF)
+        </button>
+        <p class="download-note">Click to print or save as PDF</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="contact-intro">I'm always open to discussing data science opportunities, collaborations, or just connecting with fellow tech enthusiasts. Feel free to reach out through any of these channels!</p>
+        
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div class="contact-info">
+                    <div class="label">Email</div>
+                    <a href="mailto:harshsharmashar8377@gmail.com">harshsharmashar8377@gmail.com</a>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <div class="contact-info">
+                    <div class="label">Phone</div>
+                    <a href="tel:+918377859493">+91 8377859493</a>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">🔗</div>
+                <div class="contact-info">
+                    <div class="label">LinkedIn</div>
+                    <a href="https://linkedin.com/in/harsh-sharma8377" target="_blank">linkedin.com/in/harsh-sharma8377</a>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">💻</div>
+                <div class="contact-info">
+                    <div class="label">GitHub</div>
+                    <a href="https://github.com/harshsharma2006" target="_blank">github.com/harshsharma2006</a>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">📸</div>
+                <div class="contact-info">
+                    <div class="label">Instagram</div>
+                    <a href="https://www.instagram.com/harshpandit9540?igsh=eWoxMnd1cjJqMzZw" target="_blank">@harshpandit9540</a>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div class="contact-info">
+                    <div class="label">Location</div>
+                    <span style="color: white;">Faridabad, Haryana, India</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Harsh Sharma. All rights reserved.</p>
+        <p>Built with passion for data science and continuous learning.</p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+            // Close mobile menu if open
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.getElementById('scrollTop');
+            const navbar = document.getElementById('navbar');
+            
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+                navbar.classList.add('scrolled');
+            } else {
+                scrollTop.classList.remove('visible');
+                navbar.classList.remove('scrolled');
+            }
+
+            // Update active nav link
+            updateActiveNavLink();
+        });
+
+        // Update active navigation link based on scroll position
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            
+            if (!nav.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Initial call to set active link
+        updateActiveNavLink();
+    </script>
+</body>
+</html>
