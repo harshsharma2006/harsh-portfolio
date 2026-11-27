@@ -1,1407 +1,746 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harsh Sharma - Data Science Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
-            color: white;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.3s;
-        }
-
-        nav.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            font-size: 1.25rem;
-            font-weight: bold;
-            background: linear-gradient(90deg, #60a5fa, #22d3ee);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            cursor: pointer;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #60a5fa;
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #60a5fa;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Sections */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1280px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            background: linear-gradient(90deg, #60a5fa, #22d3ee);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #60a5fa, #22d3ee);
-            margin: 1rem auto 0;
-            border-radius: 2px;
-        }
-
-        /* Hero Section */
-        #home {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            padding-top: 8rem;
-        }
-
-        .hero-content h1 {
-            font-size: 3.75rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, #60a5fa, #22d3ee, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            color: #cbd5e1;
-            margin-bottom: 2rem;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-        }
-
-        .btn-secondary {
-            background: #16a34a;
-            color: white;
-        }
-
-        .btn-tertiary {
-            background: #475569;
-            color: white;
-        }
-
-        .btn-instagram {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 450px;
-            background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(34, 211, 238, 0.2));
-            border-radius: 1rem;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            overflow: hidden;
-            position: relative;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(34, 211, 238, 0.1));
-        }
-
-        /* Sections with alternating backgrounds */
-        .bg-dark {
-            background: rgba(30, 41, 59, 0.3);
-        }
-
-        /* Content Cards */
-        .content-box {
-            background: rgba(15, 23, 42, 0.5);
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.3s;
-        }
-
-        .content-box:hover {
-            border-color: #60a5fa;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
-        }
-
-        .content-box p {
-            color: #cbd5e1;
-            font-size: 1.125rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .content-box p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Grid Layouts */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Strength Cards */
-        .strength-card {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.5), rgba(15, 23, 42, 0.5));
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .strength-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(96, 165, 250, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s;
-        }
-
-        .strength-card:hover::before {
-            right: -150%;
-        }
-
-        .strength-card:hover {
-            transform: translateY(-10px);
-            border-color: #60a5fa;
-            box-shadow: 0 15px 40px rgba(96, 165, 250, 0.3);
-        }
-
-        .strength-card .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .strength-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .strength-card p {
-            color: #cbd5e1;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Education Cards */
-        .edu-card {
-            background: rgba(15, 23, 42, 0.5);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.3s;
-        }
-
-        .edu-card:hover {
-            border-color: #60a5fa;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
-        }
-
-        .edu-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: #60a5fa;
-        }
-
-        .edu-card .school {
-            color: #94a3b8;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .edu-card p {
-            color: #cbd5e1;
-        }
-
-        /* Experience Cards */
-        .exp-card {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.3));
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            transition: all 0.3s;
-        }
-
-        .exp-card:hover {
-            border-color: #60a5fa;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
-        }
-
-        .exp-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .exp-card .company {
-            color: #60a5fa;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .exp-card .duration {
-            color: #94a3b8;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        .exp-card ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .exp-card li {
-            color: #cbd5e1;
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .exp-card li:before {
-            content: "▹";
-            color: #60a5fa;
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* Featured Project */
-        .featured-project {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(88, 28, 135, 0.4));
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid rgba(59, 130, 246, 0.4);
-            margin-bottom: 3rem;
-            transition: all 0.3s;
-        }
-
-        .featured-project:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(96, 165, 250, 0.3);
-        }
-
-        .featured-badge {
-            display: inline-block;
-            background: #2563eb;
-            padding: 0.3rem 1rem;
-            border-radius: 1rem;
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-            animation: pulse 2s infinite;
-        }
-
-        .project-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .project-details h3 {
-            font-size: 1.875rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-details .date {
-            color: #94a3b8;
-            margin-bottom: 1rem;
-        }
-
-        .project-details p {
-            color: #cbd5e1;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-features {
-            list-style: none;
-            padding: 0;
-        }
-
-        .project-features li {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 0.75rem;
-            color: #cbd5e1;
-        }
-
-        .bullet {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-top: 8px;
-            flex-shrink: 0;
-        }
-
-        .tech-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .tech-tag {
-            background: rgba(37, 99, 235, 0.3);
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.875rem;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            transition: all 0.3s;
-        }
-
-        .tech-tag:hover {
-            background: rgba(37, 99, 235, 0.5);
-            border-color: #60a5fa;
-        }
-
-        .highlight-box {
-            background: rgba(30, 41, 59, 0.5);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.3s;
-        }
-
-        .highlight-box:hover {
-            border-color: #60a5fa;
-            transform: translateX(5px);
-        }
-
-        .highlight-box h4 {
-            margin-bottom: 0.5rem;
-        }
-
-        .highlight-box p {
-            color: #cbd5e1;
-            font-size: 0.875rem;
-        }
-
-        /* Project Cards */
-        .project-card {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.3));
-            padding: 2rem;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            transition: all 0.3s;
-        }
-
-        .project-card:hover {
-            border-color: #60a5fa;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
-        }
-
-        .project-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .project-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .project-card p {
-            color: #cbd5e1;
-        }
-
-        /* Contact Section */
-        .contact-intro {
-            text-align: center;
-            color: #cbd5e1;
-            font-size: 1.125rem;
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: rgba(30, 41, 59, 0.5);
-            border-radius: 0.75rem;
-            transition: all 0.3s;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        .contact-item:hover {
-            background: rgba(30, 41, 59, 0.8);
-            transform: translateY(-5px);
-            border-color: #60a5fa;
-            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            color: #60a5fa;
-        }
-
-        .contact-info {
-            flex: 1;
-        }
-
-        .contact-item .label {
-            color: #94a3b8;
-            font-size: 0.875rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-item a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-
-        .contact-item a:hover {
-            color: #60a5fa;
-        }
-
-        /* Resume Section */
-        .resume-container {
-            background: white;
-            color: #1e293b;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 1100px;
-            margin: 0 auto 2rem;
-        }
-
-        .resume-header {
-            background: linear-gradient(90deg, #2563eb, #0891b2);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .resume-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .resume-header .subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .resume-header .info {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            font-size: 0.9rem;
-        }
-
-        .resume-body {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 0;
-        }
-
-        .resume-main {
-            padding: 2rem;
-            border-right: 2px solid #e2e8f0;
-        }
-
-        .resume-sidebar {
-            padding: 2rem;
-            background: #f8fafc;
-        }
-
-        .resume-section {
-            margin-bottom: 2rem;
-        }
-
-        .resume-section h3 {
-            color: #2563eb;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #2563eb;
-            text-transform: uppercase;
-        }
-
-        .resume-section h4 {
-            color: #1e293b;
-            margin-bottom: 0.3rem;
-        }
-
-        .resume-section .sub {
-            color: #64748b;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .resume-section p {
-            color: #475569;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .resume-section ul {
-            list-style: disc;
-            margin-left: 1.2rem;
-            color: #475569;
-        }
-
-        .resume-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .download-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            background: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .download-btn:hover {
-            background: #1d4ed8;
-            transform: scale(1.05);
-        }
-
-        .download-note {
-            text-align: center;
-            color: #94a3b8;
-            margin-top: 1rem;
-        }
-
-        /* Goals Section */
-        .goals-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .goal-card {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.3));
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            transition: all 0.3s;
-        }
-
-        .goal-card:hover {
-            border-color: #60a5fa;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
-        }
-
-        .goal-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .goal-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #60a5fa;
-        }
-
-        .goal-card p {
-            color: #cbd5e1;
-            line-height: 1.6;
-        }
-
-        /* Footer */
-        footer {
-            background: #0f172a;
-            padding: 2rem;
-            text-align: center;
-            color: #94a3b8;
-            border-top: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        footer p {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Scroll to top button */
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #2563eb;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 999;
-        }
-
-        .scroll-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-top:hover {
-            background: #1d4ed8;
-            transform: translateY(-5px);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(30, 41, 59, 0.98);
-                flex-direction: column;
-                padding: 1rem;
-                gap: 1rem;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            #home {
-                grid-template-columns: 1fr;
-                padding-top: 6rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            .project-content {
-                grid-template-columns: 1fr;
-            }
-
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-
-            .resume-body {
-                grid-template-columns: 1fr;
-            }
-
-            .resume-main {
-                border-right: none;
-                border-bottom: 2px solid #e2e8f0;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        @media print {
-            nav, footer, .download-btn, .download-note, .btn-group, .scroll-top {
-                display: none;
-            }
-            
-            section {
-                padding: 1rem;
-                page-break-inside: avoid;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harsh Sharma — Data Science, AI/ML &amp; Generative AI Portfolio</title>
+  <meta name="description" content="Portfolio of Harsh Sharma — B.Tech CSE (Data Science) student, former Data Analyst Intern at Aishwi Technologies, building AI/ML, RAG, and full-stack Python applications." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo" onclick="scrollToSection('home')">Harsh Sharma</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" onclick="scrollToSection('home')" class="nav-link">Home</a></li>
-                <li><a href="#about" onclick="scrollToSection('about')" class="nav-link">About</a></li>
-                <li><a href="#strengths" onclick="scrollToSection('strengths')" class="nav-link">Strengths</a></li>
-                <li><a href="#education" onclick="scrollToSection('education')" class="nav-link">Education</a></li>
-                <li><a href="#experience" onclick="scrollToSection('experience')" class="nav-link">Experience</a></li>
-                <li><a href="#expertise" onclick="scrollToSection('expertise')" class="nav-link">Expertise</a></li>
-                <li><a href="#projects" onclick="scrollToSection('projects')" class="nav-link">Projects</a></li>
-                <li><a href="#why-me" onclick="scrollToSection('why-me')" class="nav-link">Why Me</a></li>
-                <li><a href="#goals" onclick="scrollToSection('goals')" class="nav-link">Goals</a></li>
-                <li><a href="#resume" onclick="scrollToSection('resume')" class="nav-link">Resume</a></li>
-                <li><a href="#contact" onclick="scrollToSection('contact')" class="nav-link">Contact</a></li>
-            </ul>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        </div>
-    </nav>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <canvas id="neuralBg" aria-hidden="true"></canvas>
 
-    <!-- Hero Section -->
-    <section id="home">
-        <div class="hero-content">
-            <h1>Harsh Sharma</h1>
-            <p>Aspiring Data Analyst | B.Tech CSE (Data Science) Student | Python & Analytics Specialist</p>
-            <div class="btn-group">
-                <a href="https://linkedin.com/in/harsh-sharma8377" target="_blank" class="btn btn-primary">
-                    🔗 Connect on LinkedIn
-                </a>
-                <button onclick="scrollToSection('resume')" class="btn btn-secondary">
-                    📄 View Resume
-                </button>
-                <a href="https://github.com/harshsharma2006" target="_blank" class="btn btn-tertiary">
-                    💻 View GitHub
-                </a>
-            </div>
-        </div>
-        <div class="hero-image">
-            <img src="https://via.placeholder.com/450x450/1e3a8a/60a5fa?text=Harsh+Sharma" alt="Harsh Sharma">
-        </div>
-    </section>
+  <!-- Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#top" class="nav-brand" aria-label="Harsh Sharma Home">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>harsh.sharma</span>
+      </a>
 
-    <!-- About Section -->
-    <section id="about" class="bg-dark">
-        <h2 class="section-title">About Me</h2>
-        <div class="content-box">
-            <p>I'm a B.Tech Computer Science and Engineering student specializing in Data Science at Lingaya's Vidyapeeth, passionate about transforming data into actionable insights. Currently interning at Aishwi Technologies, I combine technical expertise with problem-solving drive.</p>
-            <p>My foundation spans Python, data analysis, and visualization. I'm committed to continuous learning and building a career in data-driven decision-making and machine learning applications.</p>
-        </div>
-    </section>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#certifications" class="nav-link">Certs</a>
+        <a href="#journey" class="nav-link">Journey</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
 
-    <!-- Core Strengths -->
-    <section id="strengths">
-        <h2 class="section-title">Core Strengths</h2>
-        <div class="grid-3">
-            <div class="strength-card">
-                <div class="icon">💻</div>
-                <h3>Technical Skills</h3>
-                <p>Python programming, EDA, Matplotlib, Pandas, data visualization and analytics.</p>
-            </div>
-            <div class="strength-card">
-                <div class="icon">📊</div>
-                <h3>Professional Traits</h3>
-                <p>Quick learner, collaborative, detail-oriented, solution-driven, and disciplined.</p>
-            </div>
-            <div class="strength-card">
-                <div class="icon">💡</div>
-                <h3>Soft Skills</h3>
-                <p>Effective communication, teamwork, leadership potential, and community engagement.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education -->
-    <section id="education" class="bg-dark">
-        <h2 class="section-title">Educational Journey</h2>
-        <div class="grid-3">
-            <div class="edu-card">
-                <h3>Secondary Education</h3>
-                <p class="school">Nidhi Public Sr. Sec. School (Class 10th, 2021-2022)</p>
-                <p>Strong academic foundation and core subjects.</p>
-            </div>
-            <div class="edu-card">
-                <h3>Senior Secondary Education</h3>
-                <p class="school">Vidya Mandir Public School (PCM Stream, Class 12th)</p>
-                <p>Strong foundation in mathematics and science.</p>
-            </div>
-            <div class="edu-card">
-                <h3>B.Tech CSE (Data Science)</h3>
-                <p class="school">Lingaya's Vidyapeeth (July 2024 - June 2028)</p>
-                <p>Building expertise in analytics, AI, and machine learning.</p>
-            </div>
-        </div>
-        <div style="max-width: 700px; margin: 2rem auto 0;">
-            <div class="edu-card">
-                <h3>Professional Certification</h3>
-                <p class="school">Data Analytics Essentials - Cisco Networking Academy</p>
-                <p>Completed with hands-on projects.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Professional Experience -->
-    <section id="experience">
-        <h2 class="section-title">Professional Experience</h2>
-        <div class="grid-2">
-            <div class="exp-card">
-                <h3>Data Analyst Intern</h3>
-                <p class="company">Aishwi Technologies</p>
-                <p class="duration">July - November 2025 (Remote)</p>
-                <ul>
-                    <li>Collaborated with Data & Analytics team led by Sonti Ruthvik Sree Ranga</li>
-                    <li>Worked on real-world datasets and practical analysis tasks</li>
-                    <li>Enhanced problem-solving and technical skills through projects</li>
-                    <li>Gained exposure to industry-standard analytical tools</li>
-                </ul>
-            </div>
-            <div class="exp-card">
-                <h3>NSS Volunteer</h3>
-                <p class="company">Lingaya's Vidyapeeth</p>
-                <p class="duration">July 2025 - Present</p>
-                <ul>
-                    <li>Community service and cleanliness drives</li>
-                    <li>Social awareness campaigns and environmental initiatives</li>
-                    <li>Youth leadership development through teamwork</li>
-                    <li>Promoting social responsibility and sustainability</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Expertise -->
-    <section id="expertise" class="bg-dark">
-        <h2 class="section-title">Technical Expertise</h2>
-        <div class="grid-2">
-            <div class="exp-card">
-                <div class="icon" style="font-size: 2.5rem;">🐍</div>
-                <h3>Python Programming</h3>
-                <p style="color: #cbd5e1;">Core programming language for data analysis, scripting, and automation tasks.</p>
-            </div>
-            <div class="exp-card">
-                <div class="icon" style="font-size: 2.5rem;">📈</div>
-                <h3>Data Visualization</h3>
-                <p style="color: #cbd5e1;">Matplotlib expertise for creating compelling visual representations of insights.</p>
-            </div>
-            <div class="exp-card">
-                <div class="icon" style="font-size: 2.5rem;">🗄️</div>
-                <h3>EDA & Analytics</h3>
-                <p style="color: #cbd5e1;">Exploratory Data Analysis using Pandas for data cleaning and transformation.</p>
-            </div>
-            <div class="exp-card">
-                <div class="icon" style="font-size: 2.5rem;">🧩</div>
-                <h3>Problem Solving</h3>
-                <p style="color: #cbd5e1;">Analytical thinking and solution-driven approach to complex data challenges.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Academic Projects -->
-    <section id="projects">
-        <h2 class="section-title">Academic Projects & Learning</h2>
-        <p class="contact-intro">Throughout my B.Tech programme, I've engaged in hands-on projects applying data science principles to real-world scenarios. My practical experience includes:</p>
-        
-        <!-- Featured Project -->
-        <div class="featured-project">
-            <span class="featured-badge">Featured Project</span>
-            <div class="project-content">
-                <div class="project-details">
-                    <h3>Biometric Attendance System</h3>
-                    <p class="date">January 2025 - May 2025</p>
-                    <p>An innovative automated attendance tracking solution combining fingerprint biometric authentication with real-time photo capture for enhanced security and verification.</p>
-                    <ul class="project-features">
-                        <li><span class="bullet" style="background: #60a5fa;"></span>Developed automated attendance system using fingerprint biometric authentication coupled with real-time photo capture</li>
-                        <li><span class="bullet" style="background: #22d3ee;"></span>Engineered database to reduce manual entry errors by an estimated 90%</li>
-                        <li><span class="bullet" style="background: #a855f7;"></span>Integrated fingerprint scanning and data processing modules for efficient tracking</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Biometric SDK</span>
-                        <span class="tech-tag">Database</span>
-                        <span class="tech-tag">Image Processing</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="highlight-box">
-                        <h4 style="color: #60a5fa;">🔐 Security Features</h4>
-                        <p>Fingerprint authentication + Real-time photo capture</p>
-                    </div>
-                    <div class="highlight-box">
-                        <h4 style="color: #22d3ee;">📊 Efficiency Gains</h4>
-                        <p>90% reduction in manual entry errors</p>
-                    </div>
-                    <div class="highlight-box">
-                        <h4 style="color: #a855f7;">⚡ Performance</h4>
-                        <p>Fast, reliable, and efficient tracking system</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid-3">
-            <div class="project-card">
-                <div class="project-number" style="color: #60a5fa;">1</div>
-                <h3>Cognifyz Technologies Collaboration</h3>
-                <p>Contributed to practical Data Science tasks using industry tools and methodologies.</p>
-            </div>
-            <div class="project-card">
-                <div class="project-number" style="color: #22d3ee;">2</div>
-                <h3>Cisco Academy Certification</h3>
-                <p>Completed comprehensive data analytics essentials training with practical applications.</p>
-            </div>
-            <div class="project-card">
-                <div class="project-number" style="color: #a855f7;">3</div>
-                <h3>Continuous Learning</h3>
-                <p>Pursuing additional certifications and online courses in AI, ML, and advanced analytics.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Hire Me -->
-    <section id="why-me" class="bg-dark">
-        <h2 class="section-title">Why Hire Me?</h2>
-        <div class="grid-2">
-            <div class="exp-card">
-                <h3>Entry-Level Ready</h3>
-                <p style="color: #cbd5e1;">Fresh perspective combined with solid technical foundation and internship experience.</p>
-            </div>
-            <div class="exp-card">
-                <h3>Growth Mindset</h3>
-                <p style="color: #cbd5e1;">Quick learner eager to master tools and technologies, adapt to challenges, and grow with the organization.</p>
-            </div>
-            <div class="exp-card">
-                <h3>Strong Work Ethic</h3>
-                <p style="color: #cbd5e1;">Disciplined, detail-oriented, and committed to delivering quality work on time.</p>
-            </div>
-            <div class="exp-card">
-                <h3>Team Player</h3>
-                <p style="color: #cbd5e1;">Collaborative spirit with proven leadership experience through NSS and event coordination.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- What Drives Me -->
-    <section id="goals">
-        <h2 class="section-title">What Drives Me</h2>
-        <div class="goals-grid">
-            <div class="goal-card">
-                <div class="goal-icon">🎯</div>
-                <h3>Career Goals</h3>
-                <p>To become a skilled Data Analyst, leveraging analytics and machine learning to solve complex business problems and drive data-driven decision making in organizations.</p>
-            </div>
-            <div class="goal-card">
-                <div class="goal-icon">🌱</div>
-                <h3>Learning Philosophy</h3>
-                <p>Committed to continuous learning and staying updated with the latest trends in data science, AI, and analytics through courses, certifications, and hands-on projects.</p>
-            </div>
-            <div class="goal-card">
-                <div class="goal-icon">💪</div>
-                <h3>Core Values</h3>
-                <p>Integrity, excellence, collaboration, and social responsibility guide my professional journey and community engagement through NSS volunteering.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resume Section -->
-    <section id="resume" class="bg-dark">
-        <h2 class="section-title">My Resume</h2>
-        <div class="resume-container">
-            <div class="resume-header">
-                <h1>HARSH SHARMA</h1>
-                <p class="subtitle">Data Science Student</p>
-                <div class="info">
-                    <span>📞 8377859493</span>
-                    <span>📧 harshsharmashar8377@gmail.com</span>
-                    <span>📍 Faridabad, Haryana</span>
-                </div>
-            </div>
-            <div class="resume-body">
-                <div class="resume-main">
-                    <div class="resume-section">
-                        <h3>Profile</h3>
-                        <p>A highly motivated and results-driven 2nd-Year B.Tech Data Science student with a strong academic foundation in Python programming and data analysis. Experienced in technical project development and event coordination. Committed to applying technical knowledge and teamwork abilities to solve practical problems in a professional setting.</p>
-                    </div>
-
-                    <div class="resume-section">
-                        <h3>Education</h3>
-                        <h4>B.Tech. in Data Science</h4>
-                        <p class="sub">Lingaya's Vidyapeeth, Faridabad | 2024 - Present</p>
-
-                        <h4>Class 12 in PCM</h4>
-                        <p class="sub">Vidya Mandir Public School, Fbd. | 2023 - 2024</p>
-
-                        <h4>Class 10</h4>
-                        <p class="sub">Nidhi Public Sr. Sec. School, Fbd. | 2021 - 2022</p>
-                    </div>
-
-                    <div class="resume-section">
-                        <h3>Personal Projects</h3>
-                        <h4>Biometric Attendance System</h4>
-                        <p class="sub">01/2025 – 05/2025</p>
-                        <ul>
-                            <li>Developed an automated attendance system using fingerprint biometric authentication coupled with real-time photo capture for enhanced security and verification.</li>
-                            <li>Engineered the database to record and store attendee photos simultaneously with attendance logging, reducing manual entry errors by an estimated 90%.</li>
-                            <li>Integrated fingerprint scanning and data processing modules to ensure efficient, reliable tracking.</li>
-                        </ul>
-                    </div>
-
-                    <div class="resume-section">
-                        <h3>Extracurricular Achievements</h3>
-                        <ul>
-                            <li>NSS Volunteer, Lingaya's Vidyapeeth: Participated in community development and social responsibility initiatives, demonstrating strong teamwork and leadership.</li>
-                            <li>International Conference Coordinator (04/2025): Successfully managed logistics and scheduling for a major international conference event.</li>
-                            <li>Tech Fest Coordinator (03/2025): Coordinated key activities and teams for the annual college Technology Festival.</li>
-                            <li>Blockchain Yatra Organizing Team Member (08/2024).</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="resume-sidebar">
-                    <div class="resume-section">
-                        <h3>Skills</h3>
-                        <h4>Programming Languages:</h4>
-                        <p>Python, C/C++</p>
-                        
-                        <h4>Data Tools:</h4>
-                        <p>SQL, Pandas, NumPy, Matplotlib, Git, MS Excel</p>
-                        
-                        <h4>Core Concepts:</h4>
-                        <p>Data Analytic, System Integration, Design Thinking</p>
-                        
-                        <h4>Soft Skills:</h4>
-                        <p>Leadership, Teamwork, Problem-solving, Communication</p>
-                    </div>
-
-                    <div class="resume-section">
-                        <h3>Awards & Certifications</h3>
-                        <ul>
-                            <li>Python Basic (03/2025)</li>
-                            <li>Energy Literacy - NPTEL (02/2025)</li>
-                            <li>Introduction to Cybersecurity (12/2024 – 02/2025)</li>
-                            <li>Pariksha Pe Charcha (12/2021)</li>
-                        </ul>
-                    </div>
-
-                    <div class="resume-section">
-                        <h3>Languages</h3>
-                        <p><strong>Hindi:</strong> Full Professional Proficiency</p>
-                        <p><strong>English:</strong> Working Proficiency</p>
-                    </div>
-
-                    <div class="resume-section">
-                        <h3>Contact</h3>
-                        <p>📱 8377859493</p>
-                        <p>📧 harshsharmashar8377@gmail.com</p>
-                        <p>🔗 linkedin.com/in/harsh-sharma8377</p>
-                        <p>💻 github.com/harshsharma2006</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="download-btn" onclick="window.print()">
-            📥 Download Resume (PDF)
+      <div class="nav-actions">
+        <button class="icon-btn cmd-trigger" id="cmdBtn" type="button" title="Quick Navigation (Ctrl+K)" aria-label="Open command palette">
+          <span class="cmd-label">Search</span>
+          <kbd>Ctrl K</kbd>
         </button>
-        <p class="download-note">Click to print or save as PDF</p>
-    </section>
+        <button class="icon-btn" id="themeToggle" type="button" title="Toggle light or dark theme" aria-label="Toggle color theme">
+          <span id="themeIcon">☀️</span>
+        </button>
+        <a class="btn btn-sm btn-primary nav-resume" href="assets/Harsh_Sharma_Resume_2026.pdf" download="Harsh_Sharma_Resume_2026.pdf">
+          ⬇ Resume
+        </a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobileDrawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Let's Connect</h2>
-        <p class="contact-intro">I'm always open to discussing data science opportunities, collaborations, or just connecting with fellow tech enthusiasts. Feel free to reach out through any of these channels!</p>
-        
-        <div class="contact-grid">
-            <div class="contact-item">
-                <div class="contact-icon">📧</div>
-                <div class="contact-info">
-                    <div class="label">Email</div>
-                    <a href="mailto:harshsharmashar8377@gmail.com">harshsharmashar8377@gmail.com</a>
-                </div>
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="mobile-drawer-inner">
+      <a href="#about" class="mobile-link">01 · About</a>
+      <a href="#skills" class="mobile-link">02 · Skills</a>
+      <a href="#experience" class="mobile-link">03 · Experience</a>
+      <a href="#projects" class="mobile-link">04 · Projects</a>
+      <a href="#certifications" class="mobile-link">05 · Certifications</a>
+      <a href="#journey" class="mobile-link">06 · Journey</a>
+      <a href="#contact" class="mobile-link">07 · Contact</a>
+      <a class="btn btn-primary mobile-resume" href="assets/Harsh_Sharma_Resume_2026.pdf" download="Harsh_Sharma_Resume_2026.pdf">⬇ Download 2026 Resume (PDF)</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- Hero Bento -->
+    <section class="hero section" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="status-pill">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>Open to 2026–2027 Internships · Data Science · AI/ML · GenAI · Python</span>
+          </div>
+
+          <p class="eyebrow">// B.Tech CSE (Data Science) · Lingaya's Vidyapeeth, Faridabad</p>
+          <h1 class="hero-title">Harsh Sharma</h1>
+
+          <div class="typewriter-row" aria-live="polite">
+            <span class="prompt-chevron">&gt;</span>
+            <span id="typewriterText" class="typewriter-text">Data Science &amp; AI/ML Builder</span>
+            <span class="cursor" aria-hidden="true">|</span>
+          </div>
+
+          <p class="hero-desc">
+            I design and ship applied <strong>Generative AI (RAG)</strong>, <strong>Machine Learning</strong>, and <strong>Data Analytics</strong> systems — from Whisper + LangChain + ChromaDB video intelligence to multi-tenant Streamlit + SQLAlchemy + Scikit-learn SaaS platforms.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">Explore Projects ↓</a>
+            <a href="assets/Harsh_Sharma_Resume_2026.pdf" download="Harsh_Sharma_Resume_2026.pdf" class="btn btn-outline">⬇ Resume PDF</a>
+            <a href="https://github.com/harshsharma2006" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/harsh-sharma8377/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">LinkedIn ↗</a>
+          </div>
+
+          <div class="hero-kpis">
+            <div class="kpi-card">
+              <div class="kpi-val" data-count="3">3+</div>
+              <div class="kpi-label">Flagship AI/ML &amp; GenAI Repos</div>
             </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">📱</div>
-                <div class="contact-info">
-                    <div class="label">Phone</div>
-                    <a href="tel:+918377859493">+91 8377859493</a>
-                </div>
+            <div class="kpi-card">
+              <div class="kpi-val" data-count="1">1</div>
+              <div class="kpi-label">Data Analyst Internship</div>
             </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">🔗</div>
-                <div class="contact-info">
-                    <div class="label">LinkedIn</div>
-                    <a href="https://linkedin.com/in/harsh-sharma8377" target="_blank">linkedin.com/in/harsh-sharma8377</a>
-                </div>
+            <div class="kpi-card">
+              <div class="kpi-val" data-count="18">18+</div>
+              <div class="kpi-label">Verified Certifications</div>
             </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">💻</div>
-                <div class="contact-info">
-                    <div class="label">GitHub</div>
-                    <a href="https://github.com/harshsharma2006" target="_blank">github.com/harshsharma2006</a>
-                </div>
+            <div class="kpi-card">
+              <div class="kpi-val">20/20</div>
+              <div class="kpi-label">Passing Pytest Suite (TalentSphere)</div>
             </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">📸</div>
-                <div class="contact-info">
-                    <div class="label">Instagram</div>
-                    <a href="https://www.instagram.com/harshpandit9540?igsh=eWoxMnd1cjJqMzZw" target="_blank">@harshpandit9540</a>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">📍</div>
-                <div class="contact-info">
-                    <div class="label">Location</div>
-                    <span style="color: white;">Faridabad, Haryana, India</span>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div class="hero-visual reveal">
+          <div class="terminal-card glass">
+            <div class="terminal-bar">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <span class="terminal-title">harsh.ai — workspace.json</span>
+              <span class="online-tag">● ACTIVE</span>
+            </div>
+            <div class="terminal-body">
+              <pre class="code-block"><code><span class="c-key">"candidate"</span>: <span class="c-str">"Harsh Sharma"</span>,
+<span class="c-key">"degree"</span>: <span class="c-str">"B.Tech CSE (Data Science), 2024–2028"</span>,
+<span class="c-key">"experience"</span>: <span class="c-str">"Data Analyst Intern @ Aishwi Tech"</span>,
+<span class="c-key">"flagship_live"</span>: <span class="c-str">"TalentSphere Enterprise 2.0"</span>,
+<span class="c-key">"genai_rag"</span>: [<span class="c-str">"Whisper"</span>, <span class="c-str">"LangChain"</span>, <span class="c-str">"ChromaDB"</span>, <span class="c-str">"Mistral AI"</span>],
+<span class="c-key">"ml_core"</span>: [<span class="c-str">"Scikit-learn"</span>, <span class="c-str">"Pandas"</span>, <span class="c-str">"NumPy"</span>, <span class="c-str">"SQL"</span>],
+<span class="c-key">"honors"</span>: <span class="c-str">"NPTEL Data Analytics (Elite, 2026)"</span></code></pre>
+
+              <div class="terminal-quick">
+                <a class="chip-link" href="https://talentsphereenterprise20-hq239uebmxwggycjex9icv.streamlit.app/" target="_blank" rel="noopener noreferrer">
+                  🌐 Live App: TalentSphere 2.0 ↗
+                </a>
+                <button class="chip-link chip-btn" type="button" id="openAiFromHero">
+                  🤖 Ask Harsh AI
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Harsh Sharma. All rights reserved.</p>
-        <p>Built with passion for data science and continuous learning.</p>
-    </footer>
+    <!-- 01 About -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="sec-num">01</span>
+          <div>
+            <p class="sec-kicker">ABOUT ME</p>
+            <h2 class="sec-title">Turning raw data &amp; media into usable intelligence</h2>
+          </div>
+        </div>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+        <div class="about-grid">
+          <div class="glass card about-story reveal">
+            <p>
+              I am a <strong>B.Tech Computer Science (Data Science)</strong> undergraduate at Lingaya's Vidyapeeth, Faridabad (2024–2028), focused on building practical systems across <strong>Data Analytics, Machine Learning, and Generative AI</strong>.
+            </p>
+            <p>
+              During my 5-month <strong>Data Analyst Internship at Aishwi Technologies</strong> (Jul–Nov 2025), I worked on real-world production datasets—handling data cleaning, exploratory data analysis (EDA), visualization, and collaborative reporting workflows.
+            </p>
+            <p>
+              Beyond analytics, I ship end-to-end Python applications: <strong>TalentSphere Enterprise 2.0</strong> (a deployed multi-tenant ATS &amp; talent platform with 28 SQLAlchemy ORM models, TF-IDF matching, ReportLab PDFs, Docker, and 20 pytest tests) and <strong>AI Video Assistant</strong> (a Whisper + LangChain + ChromaDB + Mistral AI RAG pipeline).
+            </p>
+          </div>
 
-    <script>
-        // Smooth scrolling function
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-            }
-            // Close mobile menu if open
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.remove('active');
-        }
+          <div class="about-meta-grid reveal">
+            <div class="glass meta-tile">
+              <span class="meta-icon">🎓</span>
+              <div>
+                <div class="meta-label">Education</div>
+                <div class="meta-val">B.Tech CSE (Data Science)</div>
+                <div class="meta-sub">Lingaya's Vidyapeeth · 2024–2028 · CGPA 7.0/10</div>
+              </div>
+            </div>
+            <div class="glass meta-tile">
+              <span class="meta-icon">💼</span>
+              <div>
+                <div class="meta-label">Internship</div>
+                <div class="meta-val">Data Analyst Intern</div>
+                <div class="meta-sub">Aishwi Technologies · Jul–Nov 2025</div>
+              </div>
+            </div>
+            <div class="glass meta-tile">
+              <span class="meta-icon">📍</span>
+              <div>
+                <div class="meta-label">Location</div>
+                <div class="meta-val">Faridabad, Haryana, India</div>
+                <div class="meta-sub">Open to Delhi NCR, Remote &amp; Hybrid</div>
+              </div>
+            </div>
+            <div class="glass meta-tile">
+              <span class="meta-icon">🎯</span>
+              <div>
+                <div class="meta-label">Target Roles</div>
+                <div class="meta-val">DS · Data Analyst · AI/ML · GenAI · Python</div>
+                <div class="meta-sub">Immediate Internship Availability</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        // Toggle mobile menu
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
+    <!-- 02 Skills -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="sec-num">02</span>
+          <div>
+            <p class="sec-kicker">TECHNICAL CAPABILITIES</p>
+            <h2 class="sec-title">Skills verified across code &amp; credentials</h2>
+          </div>
+        </div>
 
-        // Scroll to top
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        <div class="filter-bar reveal" role="tablist" aria-label="Filter skill categories">
+          <button class="filter-pill active" data-skill-filter="all" type="button">All Categories</button>
+          <button class="filter-pill" data-skill-filter="data" type="button">Data &amp; ML</button>
+          <button class="filter-pill" data-skill-filter="genai" type="button">GenAI &amp; NLP</button>
+          <button class="filter-pill" data-skill-filter="backend" type="button">Databases &amp; App Stack</button>
+        </div>
 
-        // Show/hide scroll to top button
-        window.addEventListener('scroll', function() {
-            const scrollTop = document.getElementById('scrollTop');
-            const navbar = document.getElementById('navbar');
-            
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.add('visible');
-                navbar.classList.add('scrolled');
-            } else {
-                scrollTop.classList.remove('visible');
-                navbar.classList.remove('scrolled');
-            }
+        <div class="skills-grid-6" id="skillsGrid">
+          <article class="glass card skill-card reveal" data-skill-cat="data">
+            <div class="skill-card-head">
+              <h3>Languages</h3>
+              <span class="skill-badge">Core</span>
+            </div>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Python</span>
+              <span class="tag tag-accent">SQL</span>
+              <span class="tag">C / C++</span>
+              <span class="tag">HTML5 / CSS3</span>
+            </div>
+          </article>
 
-            // Update active nav link
-            updateActiveNavLink();
-        });
+          <article class="glass card skill-card reveal" data-skill-cat="data">
+            <div class="skill-card-head">
+              <h3>Data Analytics &amp; Visualization</h3>
+              <span class="skill-badge">Internship Verified</span>
+            </div>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Pandas</span>
+              <span class="tag tag-accent">NumPy</span>
+              <span class="tag">EDA</span>
+              <span class="tag">Data Cleaning</span>
+              <span class="tag">Matplotlib</span>
+              <span class="tag">Plotly</span>
+              <span class="tag">SciPy</span>
+              <span class="tag">MS Excel</span>
+            </div>
+          </article>
 
-        // Update active navigation link based on scroll position
-        function updateActiveNavLink() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
+          <article class="glass card skill-card reveal" data-skill-cat="data">
+            <div class="skill-card-head">
+              <h3>Machine Learning</h3>
+              <span class="skill-badge">11 Pipelines</span>
+            </div>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Scikit-learn</span>
+              <span class="tag">Regression</span>
+              <span class="tag">Classification</span>
+              <span class="tag">Clustering</span>
+              <span class="tag">PCA</span>
+              <span class="tag">Random Forest</span>
+              <span class="tag">SVM / KNN</span>
+              <span class="tag">Model Evaluation</span>
+            </div>
+          </article>
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        }
+          <article class="glass card skill-card reveal" data-skill-cat="genai">
+            <div class="skill-card-head">
+              <h3>Generative AI &amp; NLP</h3>
+              <span class="skill-badge">RAG &amp; LLMs</span>
+            </div>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">LangChain</span>
+              <span class="tag tag-accent">RAG</span>
+              <span class="tag tag-accent">ChromaDB</span>
+              <span class="tag">OpenAI Whisper</span>
+              <span class="tag">Hugging Face</span>
+              <span class="tag">Mistral AI</span>
+              <span class="tag">TF-IDF &amp; Cosine Sim</span>
+              <span class="tag">Prompt Engineering</span>
+            </div>
+          </article>
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const navLinks = document.getElementById('navLinks');
-            const menuToggle = document.querySelector('.menu-toggle');
-            const nav = document.querySelector('nav');
-            
-            if (!nav.contains(event.target)) {
-                navLinks.classList.remove('active');
-            }
-        });
+          <article class="glass card skill-card reveal" data-skill-cat="backend">
+            <div class="skill-card-head">
+              <h3>Frameworks &amp; Databases</h3>
+              <span class="skill-badge">28 ORM Models</span>
+            </div>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Streamlit</span>
+              <span class="tag tag-accent">SQLAlchemy ORM</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">SQLite (WAL)</span>
+              <span class="tag">NoSQL</span>
+              <span class="tag">Pydantic</span>
+              <span class="tag">ReportLab</span>
+            </div>
+          </article>
 
-        // Initial call to set active link
-        updateActiveNavLink();
-    </script>
+          <article class="glass card skill-card reveal" data-skill-cat="backend">
+            <div class="skill-card-head">
+              <h3>Engineering &amp; DevOps</h3>
+              <span class="skill-badge">Testing &amp; Cloud</span>
+            </div>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Git &amp; GitHub</span>
+              <span class="tag tag-accent">Docker</span>
+              <span class="tag">Docker Compose</span>
+              <span class="tag">pytest</span>
+              <span class="tag">Bcrypt / RBAC</span>
+              <span class="tag">Jupyter</span>
+              <span class="tag">Agile Scrum</span>
+              <span class="tag">OOP &amp; DBMS</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Experience -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="sec-num">03</span>
+          <div>
+            <p class="sec-kicker">EXPERIENCE &amp; LEADERSHIP</p>
+            <h2 class="sec-title">Where I have applied my skills</h2>
+          </div>
+        </div>
+
+        <div class="exp-stack">
+          <article class="glass card exp-item reveal">
+            <div class="exp-top">
+              <div>
+                <span class="exp-date">JUL 2025 — NOV 2025</span>
+                <h3>Data Analyst Intern</h3>
+                <p class="exp-org">Aishwi Technologies · Faridabad, India</p>
+              </div>
+              <span class="exp-pill">Industry Internship</span>
+            </div>
+            <ul class="clean-list">
+              <li>Performed data cleaning, preprocessing, exploratory data analysis (EDA), and visualization on real-world production datasets using Python and Pandas.</li>
+              <li>Collaborated with the Data &amp; Analytics team on structured data-driven reporting projects to improve team decision-making workflows.</li>
+              <li>Strengthened analytical problem-solving through hands-on engagement with live business datasets.</li>
+            </ul>
+          </article>
+
+          <article class="glass card exp-item reveal">
+            <div class="exp-top">
+              <div>
+                <span class="exp-date">JUL 2025</span>
+                <h3>Data Science Practical Tasks</h3>
+                <p class="exp-org">Cognifyz Technologies · <a href="https://github.com/harshsharma2006/Cognifyz" target="_blank" rel="noopener noreferrer">GitHub Repo ↗</a></p>
+              </div>
+              <span class="exp-pill">Practical Tasks</span>
+            </div>
+            <ul class="clean-list">
+              <li>Completed 9 Python EDA and visualization scripts across Levels 1–3 on restaurant datasets using Pandas and Matplotlib.</li>
+              <li>Built missing-value diagnostics, geospatial latitude/longitude scatter plots, cost-vs-rating analytics, a CLI cuisine/city recommender, and a 3-panel summary dashboard.</li>
+            </ul>
+          </article>
+
+          <article class="glass card exp-item reveal">
+            <div class="exp-top">
+              <div>
+                <span class="exp-date">JUL 2025 — PRESENT</span>
+                <h3>NSS Volunteer &amp; Event Coordinator</h3>
+                <p class="exp-org">National Service Scheme &amp; Lingaya's Vidyapeeth</p>
+              </div>
+              <span class="exp-pill">Leadership</span>
+            </div>
+            <ul class="clean-list">
+              <li>Coordinated ICSsCT-2025 International Conference and College Tech Fest logistics for 200+ attendees across student and faculty teams.</li>
+              <li>Led campus outreach, cleanliness drives, and community awareness campaigns through NSS.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 Projects -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="sec-num">04</span>
+          <div>
+            <p class="sec-kicker">FEATURED ENGINEERING</p>
+            <h2 class="sec-title">Projects &amp; deployed systems</h2>
+          </div>
+        </div>
+
+        <div class="filter-bar reveal" role="tablist" aria-label="Filter projects">
+          <button class="filter-pill active" data-proj-filter="all" type="button">All Projects (6)</button>
+          <button class="filter-pill" data-proj-filter="ai" type="button">AI / GenAI &amp; SaaS</button>
+          <button class="filter-pill" data-proj-filter="ml" type="button">Machine Learning</button>
+          <button class="filter-pill" data-proj-filter="analytics" type="button">Analytics &amp; Python</button>
+        </div>
+
+        <div class="projects-bento" id="projectsGrid">
+          <!-- Featured 1: TalentSphere -->
+          <article class="glass card proj-card proj-featured reveal" data-proj-cat="ai">
+            <div class="proj-head">
+              <span class="badge badge-live">● Live Deployed · Flagship</span>
+              <span class="proj-date">Nov 2026</span>
+            </div>
+            <h3>TalentSphere Enterprise 2.0</h3>
+            <p class="proj-desc">
+              Multi-tenant AI talent management, career readiness, and ATS intelligence SaaS platform built from scratch in Python and Streamlit. Features 28 SQLAlchemy ORM models (SQLite WAL / PostgreSQL), Bcrypt 12-round authentication, 6-role RBAC, Scikit-learn TF-IDF ATS scoring &amp; job matching, ReportLab PDF exports, Docker packaging, and 20 passing pytest tests.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Python</span>
+              <span class="tag tag-accent">Streamlit</span>
+              <span class="tag">SQLAlchemy (28 ORM)</span>
+              <span class="tag">Scikit-learn (TF-IDF)</span>
+              <span class="tag">ReportLab</span>
+              <span class="tag">Docker</span>
+              <span class="tag">pytest (20/20)</span>
+            </div>
+            <div class="proj-actions">
+              <a class="btn btn-sm btn-primary" href="https://talentsphereenterprise20-hq239uebmxwggycjex9icv.streamlit.app/" target="_blank" rel="noopener noreferrer">🌐 Live App ↗</a>
+              <a class="btn btn-sm btn-outline" href="https://github.com/harshsharma2006/TalentSphere_Enterprise_2.0" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+              <button class="btn btn-sm btn-ghost modal-open" type="button" data-modal="talentsphere">Inspect Architecture</button>
+            </div>
+          </article>
+
+          <!-- Featured 2: AI Video Assistant -->
+          <article class="glass card proj-card proj-featured reveal" data-proj-cat="ai">
+            <div class="proj-head">
+              <span class="badge badge-genai">GenAI &amp; RAG · Flagship</span>
+              <span class="proj-date">Jun 2026</span>
+            </div>
+            <h3>AI Video Assistant</h3>
+            <p class="proj-desc">
+              Multimodal RAG web application ingesting YouTube URLs (<code>yt-dlp</code>) and local videos (<code>FFmpeg</code>), transcribing speech via OpenAI Whisper ASR, indexing chunks in ChromaDB with Hugging Face <code>all-MiniLM-L6-v2</code> embeddings, and orchestrating LangChain + Mistral AI chains for map-reduce summarization, action-item extraction, and grounded Q&amp;A.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">LangChain</span>
+              <span class="tag tag-accent">ChromaDB</span>
+              <span class="tag tag-accent">OpenAI Whisper</span>
+              <span class="tag">Mistral AI</span>
+              <span class="tag">Hugging Face</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">yt-dlp</span>
+            </div>
+            <div class="proj-actions">
+              <a class="btn btn-sm btn-outline" href="https://github.com/harshsharma2006/AI-Video-Assistant" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+              <button class="btn btn-sm btn-ghost modal-open" type="button" data-modal="videoai">View RAG Pipeline</button>
+            </div>
+          </article>
+
+          <!-- Project 3: Machine Learning Lab -->
+          <article class="glass card proj-card reveal" data-proj-cat="ml">
+            <div class="proj-head">
+              <span class="badge badge-ml">11 ML Pipelines</span>
+              <span class="proj-date">Nov 2026</span>
+            </div>
+            <h3>Machine Learning Practicals Suite</h3>
+            <p class="proj-desc">
+              11 modular Scikit-learn workflows spanning Titanic missing-value imputation, Linear/Multiple Regression, PCA on Iris, Logistic Regression, KNN tuning, TF-IDF + SVM/Naive Bayes spam detection, Decision Trees, Random Forest <code>ColumnTransformer</code> pipelines, K-Means &amp; Hierarchical clustering, and UCI HAR models.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Scikit-learn</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">NumPy</span>
+              <span class="tag">SciPy</span>
+              <span class="tag">Matplotlib</span>
+            </div>
+            <div class="proj-actions">
+              <a class="btn btn-sm btn-outline" href="https://github.com/harshsharma2006/Machine-Learning-Lab" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+              <button class="btn btn-sm btn-ghost modal-open" type="button" data-modal="mllab">View 11 Practicals</button>
+            </div>
+          </article>
+
+          <!-- Project 4: Cognifyz -->
+          <article class="glass card proj-card reveal" data-proj-cat="analytics">
+            <div class="proj-head">
+              <span class="badge">Data Analytics</span>
+              <span class="proj-date">Jul 2025</span>
+            </div>
+            <h3>Restaurant Data Analytics &amp; Recommender</h3>
+            <p class="proj-desc">
+              9 multi-level Python scripts (Levels 1–3) analyzing restaurant ratings, geospatial coordinates, online delivery impact, pricing vs. votes, CLI cuisine/city recommendations, and a 3-panel Matplotlib sentiment dashboard.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Matplotlib</span>
+              <span class="tag">EDA</span>
+            </div>
+            <div class="proj-actions">
+              <a class="btn btn-sm btn-outline" href="https://github.com/harshsharma2006/Cognifyz" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </article>
+
+          <!-- Project 5: Bank Management System -->
+          <article class="glass card proj-card reveal" data-proj-cat="analytics">
+            <div class="proj-head">
+              <span class="badge">Python OOP + UI</span>
+              <span class="proj-date">Feb 2026</span>
+            </div>
+            <h3>Bank Management System</h3>
+            <p class="proj-desc">
+              Object-oriented Python banking application with both a Streamlit web interface and CLI workflow supporting account creation, deposits, withdrawals, PIN validation, updates, and JSON file persistence.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Python</span>
+              <span class="tag">OOP</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">JSON</span>
+            </div>
+            <div class="proj-actions">
+              <a class="btn btn-sm btn-outline" href="https://github.com/harshsharma2006/Bank-Management-System-Project" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </article>
+
+          <!-- Project 6: Biometric Attendance System -->
+          <article class="glass card proj-card reveal" data-proj-cat="analytics">
+            <div class="proj-head">
+              <span class="badge">Academic Project</span>
+              <span class="proj-date">Jan–May 2025</span>
+            </div>
+            <h3>Biometric Attendance System</h3>
+            <p class="proj-desc">
+              Automated attendance tracking system combining biometric fingerprint verification with photo capture and structured database logging to reduce manual recording errors and automate report generation.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Python</span>
+              <span class="tag">Database Management</span>
+              <span class="tag">Automation</span>
+            </div>
+            <div class="proj-actions">
+              <span class="muted-note">Academic Showcase Project</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 Certifications -->
+    <section class="section" id="certifications">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="sec-num">05</span>
+          <div>
+            <p class="sec-kicker">CREDENTIALS &amp; TRAINING</p>
+            <h2 class="sec-title">18+ verified certifications</h2>
+          </div>
+        </div>
+
+        <div class="filter-bar reveal" role="tablist" aria-label="Filter certifications">
+          <button class="filter-pill active" data-cert-filter="all" type="button">All</button>
+          <button class="filter-pill" data-cert-filter="nptel" type="button">NPTEL</button>
+          <button class="filter-pill" data-cert-filter="industry" type="button">Industry &amp; Cloud</button>
+          <button class="filter-pill" data-cert-filter="dev" type="button">Python &amp; Data</button>
+        </div>
+
+        <div class="certs-grid" id="certsGrid">
+          <div class="glass cert-card reveal" data-cert-cat="nptel">
+            <span class="cert-issuer">NPTEL · ELITE</span>
+            <h3>Data Analytics with Python</h3>
+            <p>Jan – May 2026</p>
+          </div>
+          <div class="glass cert-card reveal" data-cert-cat="nptel">
+            <span class="cert-issuer">NPTEL</span>
+            <h3>Cloud Computing</h3>
+            <p>Jul – Oct 2025</p>
+          </div>
+          <div class="glass cert-card reveal" data-cert-cat="nptel">
+            <span class="cert-issuer">NPTEL</span>
+            <h3>Enhancing Soft Skills &amp; Personality</h3>
+            <p>Jan – Jun 2025</p>
+          </div>
+          <div class="glass cert-card reveal" data-cert-cat="industry">
+            <span class="cert-issuer">EY &amp; MICROSOFT</span>
+            <h3>AI Skills Passport (Graduate)</h3>
+            <p>AI &amp; Cloud Foundations</p>
+          </div>
+          <div class="glass cert-card reveal" data-cert-cat="industry">
+            <span class="cert-issuer">CISCO NETWORKING ACADEMY</span>
+            <h3>Data Analytics Essentials</h3>
+            <p>Applied Analytics</p>
+          </div>
+          <div class="glass cert-card reveal" data-cert-cat="dev">
+            <span class="cert-issuer">LINKEDIN LEARNING</span>
+            <h3>Advanced SQL · Advanced Python · AI in PM</h3>
+            <p>3 Specialized Courses</p>
+          </div>
+          <div class="glass cert-card reveal" data-cert-cat="dev">
+            <span class="cert-issuer">INFOSYS SPRINGBOARD</span>
+            <h3>Python · OOP · NoSQL · DBMS · Agile · SE</h3>
+            <p>6 Foundational Modules</p>
+          </div>
+          <div class="glass cert-card reveal" data-cert-cat="industry">
+            <span class="cert-issuer">HACK DEFENCE SUMMIT</span>
+            <h3>Hack Defence Summit 2026</h3>
+            <p>Participant</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Journey -->
+    <section class="section" id="journey">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="sec-num">06</span>
+          <div>
+            <p class="sec-kicker">TIMELINE</p>
+            <h2 class="sec-title">Academic &amp; engineering progression</h2>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <span class="t-date">2024</span>
+            <div class="glass t-card">
+              <h3>Started B.Tech CSE (Data Science)</h3>
+              <p>Enrolled at Lingaya's Vidyapeeth, Faridabad (2024–2028) and built foundations in Python, C/C++, and problem solving.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <span class="t-date">2025 H1</span>
+            <div class="glass t-card">
+              <h3>Core Certifications &amp; Campus Leadership</h3>
+              <p>Completed Cisco Data Analytics Essentials, NPTEL Soft Skills, Infosys Springboard modules, and coordinated ICSsCT-2025 &amp; Tech Fest for 200+ attendees.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <span class="t-date">2025 H2</span>
+            <div class="glass t-card">
+              <h3>Data Analyst Internship &amp; Cloud Computing</h3>
+              <p>Completed 5-month Data Analyst Internship at Aishwi Technologies (Jul–Nov 2025), Cognifyz Python EDA tasks (Jul 2025), and NPTEL Cloud Computing.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <span class="t-date">2026 H1</span>
+            <div class="glass t-card">
+              <h3>NPTEL Elite &amp; AI Video Assistant (RAG)</h3>
+              <p>Earned NPTEL Data Analytics with Python (Elite, Jan–May 2026) and built AI Video Assistant with Whisper, LangChain, ChromaDB, and Mistral AI.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <span class="t-date">2026 Nov</span>
+            <div class="glass t-card">
+              <h3>Machine Learning Lab &amp; TalentSphere Enterprise 2.0</h3>
+              <p>Shipped 11 Scikit-learn ML pipelines and deployed TalentSphere Enterprise 2.0 to Streamlit Cloud with 28 ORM entities, TF-IDF ATS scoring, Docker, and 20 pytest tests.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="glass contact-banner reveal">
+          <div>
+            <p class="sec-kicker">07 · LET'S CONNECT</p>
+            <h2>Open to Data Science, AI/ML, GenAI &amp; Python Internships</h2>
+            <p>Available for remote, hybrid, or Delhi NCR internships. Reach out directly or copy my email in one click.</p>
+            <div class="contact-actions">
+              <a class="btn btn-primary" href="mailto:harshsharmashar8377@gmail.com">✉ Email Me</a>
+              <button class="btn btn-outline" id="copyEmailBtn" type="button">📋 Copy Email</button>
+              <a class="btn btn-ghost" href="tel:+918377859493">📞 +91 8377859493</a>
+              <a class="btn btn-ghost" href="https://www.linkedin.com/in/harsh-sharma8377/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+              <a class="btn btn-ghost" href="https://github.com/harshsharma2006" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 Harsh Sharma · Faridabad, Haryana, India</span>
+      <span>Built with HTML5, CSS3 &amp; Vanilla JavaScript · <a href="assets/Harsh_Sharma_Resume_2026.pdf" download="Harsh_Sharma_Resume_2026.pdf">Download Resume PDF</a></span>
+    </div>
+  </footer>
+
+  <!-- Architecture / Detail Modal -->
+  <div class="modal-backdrop" id="detailModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="glass modal-box">
+      <div class="modal-head">
+        <h3 id="modalTitle">Project Details</h3>
+        <button class="icon-btn" id="modalClose" type="button" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Command Palette (Ctrl+K) -->
+  <div class="modal-backdrop" id="cmdModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="glass cmd-box">
+      <input type="text" id="cmdInput" placeholder="Jump to section, project, or action (e.g. TalentSphere, Resume, Skills)..." autocomplete="off" />
+      <div class="cmd-list" id="cmdList"></div>
+    </div>
+  </div>
+
+  <!-- Floating Ask Harsh AI Widget -->
+  <button class="ai-fab" id="aiFab" type="button" aria-label="Open Harsh AI Assistant" aria-expanded="false">
+    🤖 <span>Ask Harsh AI</span>
+  </button>
+
+  <aside class="glass ai-panel" id="aiPanel" aria-hidden="true" aria-label="Harsh AI Assistant">
+    <div class="ai-head">
+      <div>
+        <strong>HARSH AI</strong>
+        <span class="ai-status">● Verified Profile Assistant</span>
+      </div>
+      <button class="icon-btn" id="aiClose" type="button" aria-label="Close assistant">✕</button>
+    </div>
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-msg bot">
+        👋 Hi! Ask me anything about Harsh's <strong>projects</strong> (TalentSphere 2.0, AI Video Assistant, ML Lab), <strong>Aishwi Technologies internship</strong>, <strong>tech stack</strong>, or <strong>certifications</strong>.
+      </div>
+    </div>
+    <div class="ai-chips">
+      <button type="button" class="ai-chip" data-q="Who is Harsh?">Who is Harsh?</button>
+      <button type="button" class="ai-chip" data-q="Tell me about his projects">Projects</button>
+      <button type="button" class="ai-chip" data-q="What is his tech stack?">Tech Stack</button>
+      <button type="button" class="ai-chip" data-q="Tell me about his internship experience">Internship</button>
+      <button type="button" class="ai-chip" data-q="What certifications does he have?">Certifications</button>
+      <button type="button" class="ai-chip" data-q="How can I hire or contact Harsh?">Hire / Contact</button>
+    </div>
+    <form class="ai-form" id="aiForm">
+      <input type="text" id="aiInput" placeholder="Ask a question..." autocomplete="off" />
+      <button type="submit" class="btn btn-sm btn-primary">Send</button>
+    </form>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>

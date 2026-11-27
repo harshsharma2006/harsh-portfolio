@@ -1,100 +1,39 @@
-# 🌐 Harsh Sharma - Data Science Portfolio Website
+# Harsh Sharma — Data Science, AI/ML & Generative AI Portfolio
 
-This is my personal portfolio website built using **HTML, CSS, and JavaScript**.  
-It showcases my education, skills, projects, experience, resume, and contact details.
+Personal portfolio website built with **HTML5, CSS3, Vanilla JavaScript**, and a **Streamlit (`streamlit_app.py`)** wrapper for dual deployment on **Netlify / GitHub Pages** and **Streamlit Community Cloud**.
 
----
+## Featured Projects
+- **TalentSphere Enterprise 2.0** — Multi-tenant AI talent management & ATS platform (`Streamlit`, `SQLAlchemy`, `Scikit-learn`, `ReportLab`, `Docker`, `pytest`) · [Live App](https://talentsphereenterprise20-hq239uebmxwggycjex9icv.streamlit.app/)
+- **AI Video Assistant** — Multimodal RAG video transcription & Q&A app (`OpenAI Whisper`, `LangChain`, `ChromaDB`, `Hugging Face`, `Mistral AI`)
+- **Machine Learning Lab** — 11 end-to-end `Scikit-learn` supervised & unsupervised ML pipelines
+- **Cognifyz Data Science Tasks** — Multi-level EDA, geospatial visualization & restaurant recommender
+- **Bank Management System** — Python OOP + Streamlit UI & CLI with JSON persistence
 
-## 🚀 About The Project
+## Features
+- Dark / Light theme toggle (`localStorage` persisted)
+- Interactive Project & Skill & Certification category filters
+- Architecture Breakdown modals (`TalentSphere 2.0`, `AI Video Assistant`, `ML Lab`)
+- `Ctrl+K` / `Cmd+K` Command Palette for instant navigation
+- Interactive **Ask Harsh AI** assistant with quick chips and free-text query support
+- Direct **2026 ATS Resume PDF** download (`assets/Harsh_Sharma_Resume_2026.pdf`)
+- Responsive mobile hamburger navigation drawer
 
-This portfolio represents my journey as a **B.Tech Data Science student** and aspiring **Data Analyst**.
+## Run Locally
 
-The website includes:
-
-- Professional Introduction
-- Academic Background
-- Technical Skills
-- Internship Experience
-- Featured Projects
-- Resume Section (Printable PDF)
-- Contact & Social Links
-
----
-
-## 🛠 Technologies Used
-
-- HTML5
-- CSS3 (Custom styling + animations)
-- JavaScript (Smooth scrolling, navigation control)
-- Responsive Design (Mobile friendly)
-- Print-friendly Resume Layout
-
----
-
-## ✨ Features
-
-- Fully responsive design
-- Smooth scrolling navigation
-- Animated UI elements
-- Resume download (Print to PDF option)
-- Professional project showcase section
-- Contact integration (Email, LinkedIn, GitHub, Instagram)
-
----
-
-## 📂 Project Structure
-
-```
-Portfolio-Website/
-│
-├── index.html
-└── README.md
+### Option 1: Static Web Server (Netlify / GitHub Pages ready)
+Open `index.html` or run:
+```bash
+python -m http.server 8000
 ```
 
----
-
-## ▶️ How To Run
-
-1. Download or clone the repository
-2. Open `index.html` in your browser
-
-OR
-
-Right click → Open with browser
-
----
-
-## 📌 Live Preview
-
-If deployed using GitHub Pages:
-
-```
-https://harshsharma2006.github.io/Repository-Name/
+### Option 2: Streamlit App
+```bash
+pip install -r requirements.txt
+streamlit run streamlit_app.py
 ```
 
----
-
-## 👨‍💻 Author
-
-Harsh Sharma  
-B.Tech CSE (Data Science)  
-Lingaya's Vidyapeeth  
-
-📧 harshsharmashar8377@gmail.com  
-🔗 LinkedIn: https://linkedin.com/in/harsh-sharma8377  
-💻 GitHub: https://github.com/harshsharma2006  
-
----
-
-## 🎯 Purpose
-
-This portfolio is created to:
-
-- Showcase technical skills
-- Present academic & project work
-- Demonstrate frontend development ability
-- Build professional online presence
-
----
-
-⭐ If you like this project, feel free to give it a star!
+## Connect
+- **Portfolio:** https://harsh-sharma-portfolio-up.netlify.app
+- **GitHub:** https://github.com/harshsharma2006
+- **LinkedIn:** https://www.linkedin.com/in/harsh-sharma8377/
+- **Email:** harshsharmashar8377@gmail.com
