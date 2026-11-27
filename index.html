@@ -13,6 +13,15 @@
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Multi-Color 3D Aurora + Neural Background -->
+  <div class="aurora-scene" aria-hidden="true">
+    <div class="aurora-orb orb-cyan"></div>
+    <div class="aurora-orb orb-violet"></div>
+    <div class="aurora-orb orb-emerald"></div>
+    <div class="aurora-orb orb-magenta"></div>
+    <div class="grid-3d-floor"></div>
+  </div>
   <canvas id="neuralBg" aria-hidden="true"></canvas>
 
   <!-- Navigation -->
@@ -28,7 +37,7 @@
         <a href="#skills" class="nav-link">Skills</a>
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#projects" class="nav-link">Projects</a>
-        <a href="#certifications" class="nav-link">Certs</a>
+        <a href="#certifications" class="nav-link">Certificates</a>
         <a href="#journey" class="nav-link">Journey</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
@@ -58,7 +67,7 @@
       <a href="#skills" class="mobile-link">02 · Skills</a>
       <a href="#experience" class="mobile-link">03 · Experience</a>
       <a href="#projects" class="mobile-link">04 · Projects</a>
-      <a href="#certifications" class="mobile-link">05 · Certifications</a>
+      <a href="#certifications" class="mobile-link">05 · Certificates</a>
       <a href="#journey" class="mobile-link">06 · Journey</a>
       <a href="#contact" class="mobile-link">07 · Contact</a>
       <a class="btn btn-primary mobile-resume" href="assets/Harsh_Sharma_Resume_2026.pdf" download="Harsh_Sharma_Resume_2026.pdf">⬇ Download 2026 Resume (PDF)</a>
@@ -76,7 +85,7 @@
           </div>
 
           <p class="eyebrow">// B.Tech CSE (Data Science) · Lingaya's Vidyapeeth, Faridabad</p>
-          <h1 class="hero-title">Harsh Sharma</h1>
+          <h1 class="hero-title gradient-text">Harsh Sharma</h1>
 
           <div class="typewriter-row" aria-live="polite">
             <span class="prompt-chevron">&gt;</span>
@@ -90,54 +99,68 @@
 
           <div class="hero-cta">
             <a href="#projects" class="btn btn-primary">Explore Projects ↓</a>
-            <a href="assets/Harsh_Sharma_Resume_2026.pdf" download="Harsh_Sharma_Resume_2026.pdf" class="btn btn-outline">⬇ Resume PDF</a>
+            <a href="assets/Harsh_Sharma_Resume_2026.pdf" download="Harsh_Sharma_Resume_2026.pdf" class="btn btn-outline">⬇ Download 2026 Resume</a>
             <a href="https://github.com/harshsharma2006" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub ↗</a>
             <a href="https://www.linkedin.com/in/harsh-sharma8377/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">LinkedIn ↗</a>
           </div>
 
           <div class="hero-kpis">
-            <div class="kpi-card">
-              <div class="kpi-val" data-count="3">3+</div>
+            <div class="kpi-card tilt-3d">
+              <div class="kpi-val">3+</div>
               <div class="kpi-label">Flagship AI/ML &amp; GenAI Repos</div>
             </div>
-            <div class="kpi-card">
-              <div class="kpi-val" data-count="1">1</div>
+            <div class="kpi-card tilt-3d">
+              <div class="kpi-val">1</div>
               <div class="kpi-label">Data Analyst Internship</div>
             </div>
-            <div class="kpi-card">
-              <div class="kpi-val" data-count="18">18+</div>
+            <div class="kpi-card tilt-3d">
+              <div class="kpi-val">18+</div>
               <div class="kpi-label">Verified Certifications</div>
             </div>
-            <div class="kpi-card">
+            <div class="kpi-card tilt-3d">
               <div class="kpi-val">20/20</div>
-              <div class="kpi-label">Passing Pytest Suite (TalentSphere)</div>
+              <div class="kpi-label">Pytest Suite (TalentSphere)</div>
             </div>
           </div>
         </div>
 
         <div class="hero-visual reveal">
-          <div class="terminal-card glass">
-            <div class="terminal-bar">
-              <div class="dots"><span></span><span></span><span></span></div>
-              <span class="terminal-title">harsh.ai — workspace.json</span>
-              <span class="online-tag">● ACTIVE</span>
+          <div class="glass hero-profile-card tilt-3d">
+            <div class="profile-top">
+              <div class="avatar-halo">
+                <img src="assets/harsh_github_avatar.jpg" alt="Harsh Sharma — Data Science &amp; AI/ML Student" class="hero-avatar" />
+              </div>
+              <div class="profile-meta">
+                <span class="online-tag">● VERIFIED PROFILE</span>
+                <h2>Harsh Sharma</h2>
+                <p>B.Tech CSE (Data Science) · 2024–2028</p>
+                <div class="profile-badges">
+                  <span class="mini-pill">Python &amp; SQL</span>
+                  <span class="mini-pill">RAG / LLMs</span>
+                  <span class="mini-pill">Scikit-learn</span>
+                </div>
+              </div>
             </div>
-            <div class="terminal-body">
-              <pre class="code-block"><code><span class="c-key">"candidate"</span>: <span class="c-str">"Harsh Sharma"</span>,
-<span class="c-key">"degree"</span>: <span class="c-str">"B.Tech CSE (Data Science), 2024–2028"</span>,
-<span class="c-key">"experience"</span>: <span class="c-str">"Data Analyst Intern @ Aishwi Tech"</span>,
+
+            <div class="terminal-inset">
+              <div class="terminal-bar">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <span class="terminal-title">harsh.ai — workspace.json</span>
+                <span class="online-tag">READY</span>
+              </div>
+              <div class="terminal-body">
+                <pre class="code-block"><code><span class="c-key">"internship"</span>: <span class="c-str">"Data Analyst @ Aishwi Tech"</span>,
 <span class="c-key">"flagship_live"</span>: <span class="c-str">"TalentSphere Enterprise 2.0"</span>,
 <span class="c-key">"genai_rag"</span>: [<span class="c-str">"Whisper"</span>, <span class="c-str">"LangChain"</span>, <span class="c-str">"ChromaDB"</span>, <span class="c-str">"Mistral AI"</span>],
-<span class="c-key">"ml_core"</span>: [<span class="c-str">"Scikit-learn"</span>, <span class="c-str">"Pandas"</span>, <span class="c-str">"NumPy"</span>, <span class="c-str">"SQL"</span>],
-<span class="c-key">"honors"</span>: <span class="c-str">"NPTEL Data Analytics (Elite, 2026)"</span></code></pre>
-
-              <div class="terminal-quick">
-                <a class="chip-link" href="https://talentsphereenterprise20-hq239uebmxwggycjex9icv.streamlit.app/" target="_blank" rel="noopener noreferrer">
-                  🌐 Live App: TalentSphere 2.0 ↗
-                </a>
-                <button class="chip-link chip-btn" type="button" id="openAiFromHero">
-                  🤖 Ask Harsh AI
-                </button>
+<span class="c-key">"latest_cert"</span>: <span class="c-str">"Snowflake GenAI + NPTEL Elite"</span></code></pre>
+                <div class="terminal-quick">
+                  <a class="chip-link" href="https://talentsphereenterprise20-hq239uebmxwggycjex9icv.streamlit.app/" target="_blank" rel="noopener noreferrer">
+                    🌐 Live App: TalentSphere 2.0 ↗
+                  </a>
+                  <button class="chip-link chip-btn" type="button" id="openAiFromHero">
+                    🤖 Ask Harsh AI
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -157,7 +180,14 @@
         </div>
 
         <div class="about-grid">
-          <div class="glass card about-story reveal">
+          <div class="glass card tilt-3d about-story reveal">
+            <div class="about-author-strip">
+              <img src="assets/harsh_github_avatar.jpg" alt="Harsh Sharma portrait" class="about-avatar" />
+              <div>
+                <strong>Harsh Sharma</strong>
+                <span>Faridabad, Haryana, India · +91 8377859493</span>
+              </div>
+            </div>
             <p>
               I am a <strong>B.Tech Computer Science (Data Science)</strong> undergraduate at Lingaya's Vidyapeeth, Faridabad (2024–2028), focused on building practical systems across <strong>Data Analytics, Machine Learning, and Generative AI</strong>.
             </p>
@@ -170,7 +200,7 @@
           </div>
 
           <div class="about-meta-grid reveal">
-            <div class="glass meta-tile">
+            <div class="glass meta-tile tilt-3d">
               <span class="meta-icon">🎓</span>
               <div>
                 <div class="meta-label">Education</div>
@@ -178,7 +208,7 @@
                 <div class="meta-sub">Lingaya's Vidyapeeth · 2024–2028 · CGPA 7.0/10</div>
               </div>
             </div>
-            <div class="glass meta-tile">
+            <div class="glass meta-tile tilt-3d">
               <span class="meta-icon">💼</span>
               <div>
                 <div class="meta-label">Internship</div>
@@ -186,20 +216,20 @@
                 <div class="meta-sub">Aishwi Technologies · Jul–Nov 2025</div>
               </div>
             </div>
-            <div class="glass meta-tile">
-              <span class="meta-icon">📍</span>
+            <div class="glass meta-tile tilt-3d">
+              <span class="meta-icon">🏆</span>
               <div>
-                <div class="meta-label">Location</div>
-                <div class="meta-val">Faridabad, Haryana, India</div>
-                <div class="meta-sub">Open to Delhi NCR, Remote &amp; Hybrid</div>
+                <div class="meta-label">Top Honors</div>
+                <div class="meta-val">Snowflake GenAI &amp; NPTEL Elite</div>
+                <div class="meta-sub">EY &amp; Microsoft AI Passport · Cisco</div>
               </div>
             </div>
-            <div class="glass meta-tile">
+            <div class="glass meta-tile tilt-3d">
               <span class="meta-icon">🎯</span>
               <div>
                 <div class="meta-label">Target Roles</div>
                 <div class="meta-val">DS · Data Analyst · AI/ML · GenAI · Python</div>
-                <div class="meta-sub">Immediate Internship Availability</div>
+                <div class="meta-sub">Open to Remote, Hybrid &amp; Delhi NCR</div>
               </div>
             </div>
           </div>
@@ -226,7 +256,7 @@
         </div>
 
         <div class="skills-grid-6" id="skillsGrid">
-          <article class="glass card skill-card reveal" data-skill-cat="data">
+          <article class="glass card tilt-3d skill-card reveal" data-skill-cat="data">
             <div class="skill-card-head">
               <h3>Languages</h3>
               <span class="skill-badge">Core</span>
@@ -239,7 +269,7 @@
             </div>
           </article>
 
-          <article class="glass card skill-card reveal" data-skill-cat="data">
+          <article class="glass card tilt-3d skill-card reveal" data-skill-cat="data">
             <div class="skill-card-head">
               <h3>Data Analytics &amp; Visualization</h3>
               <span class="skill-badge">Internship Verified</span>
@@ -256,7 +286,7 @@
             </div>
           </article>
 
-          <article class="glass card skill-card reveal" data-skill-cat="data">
+          <article class="glass card tilt-3d skill-card reveal" data-skill-cat="data">
             <div class="skill-card-head">
               <h3>Machine Learning</h3>
               <span class="skill-badge">11 Pipelines</span>
@@ -273,7 +303,7 @@
             </div>
           </article>
 
-          <article class="glass card skill-card reveal" data-skill-cat="genai">
+          <article class="glass card tilt-3d skill-card reveal" data-skill-cat="genai">
             <div class="skill-card-head">
               <h3>Generative AI &amp; NLP</h3>
               <span class="skill-badge">RAG &amp; LLMs</span>
@@ -290,7 +320,7 @@
             </div>
           </article>
 
-          <article class="glass card skill-card reveal" data-skill-cat="backend">
+          <article class="glass card tilt-3d skill-card reveal" data-skill-cat="backend">
             <div class="skill-card-head">
               <h3>Frameworks &amp; Databases</h3>
               <span class="skill-badge">28 ORM Models</span>
@@ -307,7 +337,7 @@
             </div>
           </article>
 
-          <article class="glass card skill-card reveal" data-skill-cat="backend">
+          <article class="glass card tilt-3d skill-card reveal" data-skill-cat="backend">
             <div class="skill-card-head">
               <h3>Engineering &amp; DevOps</h3>
               <span class="skill-badge">Testing &amp; Cloud</span>
@@ -339,7 +369,7 @@
         </div>
 
         <div class="exp-stack">
-          <article class="glass card exp-item reveal">
+          <article class="glass card tilt-3d exp-item reveal">
             <div class="exp-top">
               <div>
                 <span class="exp-date">JUL 2025 — NOV 2025</span>
@@ -355,7 +385,7 @@
             </ul>
           </article>
 
-          <article class="glass card exp-item reveal">
+          <article class="glass card tilt-3d exp-item reveal">
             <div class="exp-top">
               <div>
                 <span class="exp-date">JUL 2025</span>
@@ -370,7 +400,7 @@
             </ul>
           </article>
 
-          <article class="glass card exp-item reveal">
+          <article class="glass card tilt-3d exp-item reveal">
             <div class="exp-top">
               <div>
                 <span class="exp-date">JUL 2025 — PRESENT</span>
@@ -388,13 +418,13 @@
       </div>
     </section>
 
-    <!-- 04 Projects -->
+    <!-- 04 Projects with Real Screenshots & Lightbox -->
     <section class="section" id="projects">
       <div class="container">
         <div class="section-head reveal">
           <span class="sec-num">04</span>
           <div>
-            <p class="sec-kicker">FEATURED ENGINEERING</p>
+            <p class="sec-kicker">FEATURED ENGINEERING &amp; LIVE VISUALS</p>
             <h2 class="sec-title">Projects &amp; deployed systems</h2>
           </div>
         </div>
@@ -408,15 +438,23 @@
 
         <div class="projects-bento" id="projectsGrid">
           <!-- Featured 1: TalentSphere -->
-          <article class="glass card proj-card proj-featured reveal" data-proj-cat="ai">
+          <article class="glass card tilt-3d proj-card proj-featured reveal" data-proj-cat="ai">
+            <div class="proj-media" data-lightbox="assets/projects/talentsphere_ats.png" data-caption="TalentSphere Enterprise 2.0 — AI Resume &amp; ATS Intelligence">
+              <img src="assets/projects/talentsphere_ats.png" alt="TalentSphere Enterprise 2.0 ATS Analyzer UI screenshot" loading="lazy" />
+              <span class="media-zoom">🔍 Preview Screenshot</span>
+            </div>
             <div class="proj-head">
               <span class="badge badge-live">● Live Deployed · Flagship</span>
               <span class="proj-date">Nov 2026</span>
             </div>
             <h3>TalentSphere Enterprise 2.0</h3>
             <p class="proj-desc">
-              Multi-tenant AI talent management, career readiness, and ATS intelligence SaaS platform built from scratch in Python and Streamlit. Features 28 SQLAlchemy ORM models (SQLite WAL / PostgreSQL), Bcrypt 12-round authentication, 6-role RBAC, Scikit-learn TF-IDF ATS scoring &amp; job matching, ReportLab PDF exports, Docker packaging, and 20 passing pytest tests.
+              Multi-tenant AI talent management, career readiness, and ATS intelligence SaaS platform built from scratch in Python and Streamlit. Features 28 SQLAlchemy ORM models (SQLite WAL / PostgreSQL), Bcrypt 12-round auth, 6-role RBAC, Scikit-learn TF-IDF ATS scoring &amp; job matching, ReportLab PDF exports, Docker, and 20 passing pytest tests.
             </p>
+            <div class="proj-thumbs">
+              <img src="assets/projects/talentsphere_dashboard.png" alt="TalentSphere Super Admin Command Center" class="mini-thumb" data-lightbox="assets/projects/talentsphere_dashboard.png" data-caption="TalentSphere — Super Admin Command Center" loading="lazy" />
+              <img src="assets/projects/talentsphere_student.png" alt="TalentSphere Student Placement Portal" class="mini-thumb" data-lightbox="assets/projects/talentsphere_student.png" data-caption="TalentSphere — Student Placement Launchpad" loading="lazy" />
+            </div>
             <div class="tag-cloud">
               <span class="tag tag-accent">Python</span>
               <span class="tag tag-accent">Streamlit</span>
@@ -434,7 +472,16 @@
           </article>
 
           <!-- Featured 2: AI Video Assistant -->
-          <article class="glass card proj-card proj-featured reveal" data-proj-cat="ai">
+          <article class="glass card tilt-3d proj-card proj-featured reveal" data-proj-cat="ai">
+            <div class="proj-diagram">
+              <div class="pipe-node">📺 YouTube / Local Video</div>
+              <div class="pipe-arrow">→</div>
+              <div class="pipe-node">🎙️ Whisper ASR</div>
+              <div class="pipe-arrow">→</div>
+              <div class="pipe-node">🧠 ChromaDB + MiniLM</div>
+              <div class="pipe-arrow">→</div>
+              <div class="pipe-node">⚡ LangChain + Mistral AI</div>
+            </div>
             <div class="proj-head">
               <span class="badge badge-genai">GenAI &amp; RAG · Flagship</span>
               <span class="proj-date">Jun 2026</span>
@@ -459,14 +506,18 @@
           </article>
 
           <!-- Project 3: Machine Learning Lab -->
-          <article class="glass card proj-card reveal" data-proj-cat="ml">
+          <article class="glass card tilt-3d proj-card reveal" data-proj-cat="ml">
+            <div class="proj-media" data-lightbox="assets/projects/ml_lab_pca.png" data-caption="Machine-Learning-Lab — PCA Dimensionality Reduction on Iris Dataset">
+              <img src="assets/projects/ml_lab_pca.png" alt="PCA Iris scatter plot generated by Machine-Learning-Lab" loading="lazy" />
+              <span class="media-zoom">🔍 Preview Output Plot</span>
+            </div>
             <div class="proj-head">
               <span class="badge badge-ml">11 ML Pipelines</span>
               <span class="proj-date">Nov 2026</span>
             </div>
             <h3>Machine Learning Practicals Suite</h3>
             <p class="proj-desc">
-              11 modular Scikit-learn workflows spanning Titanic missing-value imputation, Linear/Multiple Regression, PCA on Iris, Logistic Regression, KNN tuning, TF-IDF + SVM/Naive Bayes spam detection, Decision Trees, Random Forest <code>ColumnTransformer</code> pipelines, K-Means &amp; Hierarchical clustering, and UCI HAR models.
+              11 modular Scikit-learn workflows spanning Titanic imputation, Linear/Multiple Regression, PCA on Iris, Logistic Regression, KNN tuning, TF-IDF + SVM/Naive Bayes spam detection, Decision Trees, Random Forest <code>ColumnTransformer</code> pipelines, K-Means &amp; Hierarchical clustering, and UCI HAR models.
             </p>
             <div class="tag-cloud">
               <span class="tag tag-accent">Scikit-learn</span>
@@ -482,9 +533,9 @@
           </article>
 
           <!-- Project 4: Cognifyz -->
-          <article class="glass card proj-card reveal" data-proj-cat="analytics">
+          <article class="glass card tilt-3d proj-card reveal" data-proj-cat="analytics">
             <div class="proj-head">
-              <span class="badge">Data Analytics</span>
+              <span class="badge">Data Analytics · Levels 1–3</span>
               <span class="proj-date">Jul 2025</span>
             </div>
             <h3>Restaurant Data Analytics &amp; Recommender</h3>
@@ -503,9 +554,9 @@
           </article>
 
           <!-- Project 5: Bank Management System -->
-          <article class="glass card proj-card reveal" data-proj-cat="analytics">
+          <article class="glass card tilt-3d proj-card reveal" data-proj-cat="analytics">
             <div class="proj-head">
-              <span class="badge">Python OOP + UI</span>
+              <span class="badge">Python OOP + Streamlit UI</span>
               <span class="proj-date">Feb 2026</span>
             </div>
             <h3>Bank Management System</h3>
@@ -524,7 +575,7 @@
           </article>
 
           <!-- Project 6: Biometric Attendance System -->
-          <article class="glass card proj-card reveal" data-proj-cat="analytics">
+          <article class="glass card tilt-3d proj-card reveal" data-proj-cat="analytics">
             <div class="proj-head">
               <span class="badge">Academic Project</span>
               <span class="proj-date">Jan–May 2025</span>
@@ -546,61 +597,138 @@
       </div>
     </section>
 
-    <!-- 05 Certifications -->
+    <!-- 05 Verified Certificates Gallery + Credentials -->
     <section class="section" id="certifications">
       <div class="container">
         <div class="section-head reveal">
           <span class="sec-num">05</span>
           <div>
-            <p class="sec-kicker">CREDENTIALS &amp; TRAINING</p>
-            <h2 class="sec-title">18+ verified certifications</h2>
+            <p class="sec-kicker">VERIFIED CERTIFICATES &amp; GALLERY</p>
+            <h2 class="sec-title">18+ credentials &amp; certificate proofs</h2>
           </div>
         </div>
 
         <div class="filter-bar reveal" role="tablist" aria-label="Filter certifications">
-          <button class="filter-pill active" data-cert-filter="all" type="button">All</button>
+          <button class="filter-pill active" data-cert-filter="all" type="button">All Credentials</button>
+          <button class="filter-pill" data-cert-filter="visual" type="button">Certificate Images (6)</button>
           <button class="filter-pill" data-cert-filter="nptel" type="button">NPTEL</button>
           <button class="filter-pill" data-cert-filter="industry" type="button">Industry &amp; Cloud</button>
           <button class="filter-pill" data-cert-filter="dev" type="button">Python &amp; Data</button>
         </div>
 
+        <!-- Visual Certificate Proofs -->
+        <div class="cert-gallery" id="certGallery">
+          <article class="glass cert-img-card tilt-3d reveal" data-cert-cat="visual industry" data-lightbox="assets/certs/snowflake_genai_cert.png" data-caption="Snowflake &amp; LinkedIn Learning — Generative AI Professional Certificate (Nov 2026)">
+            <div class="cert-thumb-wrap">
+              <img src="assets/certs/snowflake_genai_cert.png" alt="Generative AI Professional Certificate by Snowflake" loading="lazy" />
+              <span class="media-zoom">🔍 View Certificate</span>
+            </div>
+            <div class="cert-card-meta">
+              <span class="cert-issuer">SNOWFLAKE · LINKEDIN LEARNING</span>
+              <h3>Generative AI Professional Certificate</h3>
+              <p>Nov 21, 2026 · 12h 52m</p>
+            </div>
+          </article>
+
+          <article class="glass cert-img-card tilt-3d reveal" data-cert-cat="visual dev" data-lightbox="assets/certs/hp_life_ds_cert.png" data-caption="HP LIFE — Data Science &amp; Analytics Certificate (Oct 2024)">
+            <div class="cert-thumb-wrap">
+              <img src="assets/certs/hp_life_ds_cert.png" alt="HP LIFE Data Science and Analytics Certificate" loading="lazy" />
+              <span class="media-zoom">🔍 View Certificate</span>
+            </div>
+            <div class="cert-card-meta">
+              <span class="cert-issuer">HP LIFE · HP FOUNDATION</span>
+              <h3>Data Science &amp; Analytics</h3>
+              <p>Oct 2024 · Verified</p>
+            </div>
+          </article>
+
+          <article class="glass cert-img-card tilt-3d reveal" data-cert-cat="visual dev" data-lightbox="assets/certs/python_basic_cert.png" data-caption="HackerRank — Python (Basic) Certificate of Accomplishment (Mar 2025)">
+            <div class="cert-thumb-wrap">
+              <img src="assets/certs/python_basic_cert.png" alt="HackerRank Python Basic Certificate" loading="lazy" />
+              <span class="media-zoom">🔍 View Certificate</span>
+            </div>
+            <div class="cert-card-meta">
+              <span class="cert-issuer">HACKERRANK</span>
+              <h3>Python (Basic) Skill Certification</h3>
+              <p>Mar 23, 2025 · ID: E3118D6CE96E</p>
+            </div>
+          </article>
+
+          <article class="glass cert-img-card tilt-3d reveal" data-cert-cat="visual industry" data-lightbox="assets/certs/cisco_cyber_cert.png" data-caption="Cisco Networking Academy — Introduction to Cybersecurity (Feb 2025)">
+            <div class="cert-thumb-wrap">
+              <img src="assets/certs/cisco_cyber_cert.png" alt="Cisco Introduction to Cybersecurity Certificate" loading="lazy" />
+              <span class="media-zoom">🔍 View Certificate</span>
+            </div>
+            <div class="cert-card-meta">
+              <span class="cert-issuer">CISCO NETWORKING ACADEMY</span>
+              <h3>Introduction to Cybersecurity</h3>
+              <p>Feb 21, 2025 · Verified Badge</p>
+            </div>
+          </article>
+
+          <article class="glass cert-img-card tilt-3d reveal" data-cert-cat="visual industry" data-lightbox="assets/certs/unicef_digital_literacy.png" data-caption="UNICEF / YuWaah Passport to Earning — Digital Literacy and Cyber Safety (Oct 2026, 100%)">
+            <div class="cert-thumb-wrap">
+              <img src="assets/certs/unicef_digital_literacy.png" alt="UNICEF Digital Literacy and Cyber Safety Certificate" loading="lazy" />
+              <span class="media-zoom">🔍 View Certificate</span>
+            </div>
+            <div class="cert-card-meta">
+              <span class="cert-issuer">UNICEF · YUWAAH P2E</span>
+              <h3>Digital Literacy &amp; Cyber Safety</h3>
+              <p>Oct 05, 2026 · Score: 100%</p>
+            </div>
+          </article>
+
+          <article class="glass cert-img-card tilt-3d reveal" data-cert-cat="visual dev" data-lightbox="assets/certs/linkedin_tech_comm_cert.png" data-caption="LinkedIn Learning — Tech Career Skills: Effective Technical Communication (Nov 2026)">
+            <div class="cert-thumb-wrap">
+              <img src="assets/certs/linkedin_tech_comm_cert.png" alt="LinkedIn Learning Effective Technical Communication Certificate" loading="lazy" />
+              <span class="media-zoom">🔍 View Certificate</span>
+            </div>
+            <div class="cert-card-meta">
+              <span class="cert-issuer">LINKEDIN LEARNING</span>
+              <h3>Effective Technical Communication</h3>
+              <p>Nov 15, 2026 · Verified</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Additional Verified Academic & Industry Credentials -->
         <div class="certs-grid" id="certsGrid">
-          <div class="glass cert-card reveal" data-cert-cat="nptel">
+          <div class="glass cert-card tilt-3d reveal" data-cert-cat="nptel">
             <span class="cert-issuer">NPTEL · ELITE</span>
             <h3>Data Analytics with Python</h3>
             <p>Jan – May 2026</p>
           </div>
-          <div class="glass cert-card reveal" data-cert-cat="nptel">
+          <div class="glass cert-card tilt-3d reveal" data-cert-cat="nptel">
             <span class="cert-issuer">NPTEL</span>
             <h3>Cloud Computing</h3>
             <p>Jul – Oct 2025</p>
           </div>
-          <div class="glass cert-card reveal" data-cert-cat="nptel">
+          <div class="glass cert-card tilt-3d reveal" data-cert-cat="nptel">
             <span class="cert-issuer">NPTEL</span>
             <h3>Enhancing Soft Skills &amp; Personality</h3>
             <p>Jan – Jun 2025</p>
           </div>
-          <div class="glass cert-card reveal" data-cert-cat="industry">
+          <div class="glass cert-card tilt-3d reveal" data-cert-cat="industry">
             <span class="cert-issuer">EY &amp; MICROSOFT</span>
             <h3>AI Skills Passport (Graduate)</h3>
             <p>AI &amp; Cloud Foundations</p>
           </div>
-          <div class="glass cert-card reveal" data-cert-cat="industry">
+          <div class="glass cert-card tilt-3d reveal" data-cert-cat="industry">
             <span class="cert-issuer">CISCO NETWORKING ACADEMY</span>
             <h3>Data Analytics Essentials</h3>
             <p>Applied Analytics</p>
           </div>
-          <div class="glass cert-card reveal" data-cert-cat="dev">
+          <div class="glass cert-card tilt-3d reveal" data-cert-cat="dev">
             <span class="cert-issuer">LINKEDIN LEARNING</span>
             <h3>Advanced SQL · Advanced Python · AI in PM</h3>
             <p>3 Specialized Courses</p>
           </div>
-          <div class="glass cert-card reveal" data-cert-cat="dev">
+          <div class="glass cert-card tilt-3d reveal" data-cert-cat="dev">
             <span class="cert-issuer">INFOSYS SPRINGBOARD</span>
             <h3>Python · OOP · NoSQL · DBMS · Agile · SE</h3>
             <p>6 Foundational Modules</p>
           </div>
-          <div class="glass cert-card reveal" data-cert-cat="industry">
+          <div class="glass cert-card tilt-3d reveal" data-cert-cat="industry">
             <span class="cert-issuer">HACK DEFENCE SUMMIT</span>
             <h3>Hack Defence Summit 2026</h3>
             <p>Participant</p>
@@ -623,37 +751,37 @@
         <div class="timeline">
           <div class="timeline-item reveal">
             <span class="t-date">2024</span>
-            <div class="glass t-card">
-              <h3>Started B.Tech CSE (Data Science)</h3>
-              <p>Enrolled at Lingaya's Vidyapeeth, Faridabad (2024–2028) and built foundations in Python, C/C++, and problem solving.</p>
+            <div class="glass t-card tilt-3d">
+              <h3>Started B.Tech CSE (Data Science) &amp; HP LIFE</h3>
+              <p>Enrolled at Lingaya's Vidyapeeth, Faridabad (2024–2028), completed HP LIFE Data Science &amp; Analytics, and built Python &amp; C/C++ foundations.</p>
             </div>
           </div>
           <div class="timeline-item reveal">
             <span class="t-date">2025 H1</span>
-            <div class="glass t-card">
-              <h3>Core Certifications &amp; Campus Leadership</h3>
-              <p>Completed Cisco Data Analytics Essentials, NPTEL Soft Skills, Infosys Springboard modules, and coordinated ICSsCT-2025 &amp; Tech Fest for 200+ attendees.</p>
+            <div class="glass t-card tilt-3d">
+              <h3>Cisco, HackerRank, NPTEL &amp; Campus Leadership</h3>
+              <p>Earned Cisco Data Analytics Essentials &amp; Cybersecurity, HackerRank Python (Basic), NPTEL Soft Skills, Infosys Springboard modules, and coordinated ICSsCT-2025 &amp; Tech Fest (200+ attendees).</p>
             </div>
           </div>
           <div class="timeline-item reveal">
             <span class="t-date">2025 H2</span>
-            <div class="glass t-card">
+            <div class="glass t-card tilt-3d">
               <h3>Data Analyst Internship &amp; Cloud Computing</h3>
               <p>Completed 5-month Data Analyst Internship at Aishwi Technologies (Jul–Nov 2025), Cognifyz Python EDA tasks (Jul 2025), and NPTEL Cloud Computing.</p>
             </div>
           </div>
           <div class="timeline-item reveal">
             <span class="t-date">2026 H1</span>
-            <div class="glass t-card">
+            <div class="glass t-card tilt-3d">
               <h3>NPTEL Elite &amp; AI Video Assistant (RAG)</h3>
               <p>Earned NPTEL Data Analytics with Python (Elite, Jan–May 2026) and built AI Video Assistant with Whisper, LangChain, ChromaDB, and Mistral AI.</p>
             </div>
           </div>
           <div class="timeline-item reveal">
             <span class="t-date">2026 Nov</span>
-            <div class="glass t-card">
-              <h3>Machine Learning Lab &amp; TalentSphere Enterprise 2.0</h3>
-              <p>Shipped 11 Scikit-learn ML pipelines and deployed TalentSphere Enterprise 2.0 to Streamlit Cloud with 28 ORM entities, TF-IDF ATS scoring, Docker, and 20 pytest tests.</p>
+            <div class="glass t-card tilt-3d">
+              <h3>Snowflake GenAI, ML Lab &amp; TalentSphere Enterprise 2.0</h3>
+              <p>Completed Snowflake Generative AI Professional Certificate, shipped 11 Scikit-learn ML pipelines, and deployed TalentSphere Enterprise 2.0 with 28 ORM models, TF-IDF ATS scoring, Docker, and 20 pytest tests.</p>
             </div>
           </div>
         </div>
@@ -663,14 +791,15 @@
     <!-- 07 Contact -->
     <section class="section" id="contact">
       <div class="container">
-        <div class="glass contact-banner reveal">
+        <div class="glass contact-banner tilt-3d reveal">
           <div>
             <p class="sec-kicker">07 · LET'S CONNECT</p>
             <h2>Open to Data Science, AI/ML, GenAI &amp; Python Internships</h2>
-            <p>Available for remote, hybrid, or Delhi NCR internships. Reach out directly or copy my email in one click.</p>
+            <p>Available for remote, hybrid, or Delhi NCR internships. Download my updated 2026 resume or reach out directly.</p>
             <div class="contact-actions">
-              <a class="btn btn-primary" href="mailto:harshsharmashar8377@gmail.com">✉ Email Me</a>
-              <button class="btn btn-outline" id="copyEmailBtn" type="button">📋 Copy Email</button>
+              <a class="btn btn-primary" href="assets/Harsh_Sharma_Resume_2026.pdf" download="Harsh_Sharma_Resume_2026.pdf">⬇ Download 2026 Resume</a>
+              <a class="btn btn-outline" href="mailto:harshsharmashar8377@gmail.com">✉ Email Me</a>
+              <button class="btn btn-ghost" id="copyEmailBtn" type="button">📋 Copy Email</button>
               <a class="btn btn-ghost" href="tel:+918377859493">📞 +91 8377859493</a>
               <a class="btn btn-ghost" href="https://www.linkedin.com/in/harsh-sharma8377/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
               <a class="btn btn-ghost" href="https://github.com/harshsharma2006" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
@@ -684,7 +813,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span>© 2026 Harsh Sharma · Faridabad, Haryana, India</span>
-      <span>Built with HTML5, CSS3 &amp; Vanilla JavaScript · <a href="assets/Harsh_Sharma_Resume_2026.pdf" download="Harsh_Sharma_Resume_2026.pdf">Download Resume PDF</a></span>
+      <span><a href="assets/Harsh_Sharma_Resume_2026.pdf" download="Harsh_Sharma_Resume_2026.pdf">Download Updated 2026 Resume PDF</a> · <a href="https://github.com/harshsharma2006/harsh-portfolio" target="_blank" rel="noopener noreferrer">Portfolio Source ↗</a></span>
     </div>
   </footer>
 
@@ -699,10 +828,21 @@
     </div>
   </div>
 
+  <!-- Image / Certificate Lightbox -->
+  <div class="modal-backdrop" id="imgLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption">
+    <div class="glass lightbox-box">
+      <div class="modal-head">
+        <h3 id="lightboxCaption">Preview</h3>
+        <button class="icon-btn" id="lightboxClose" type="button" aria-label="Close image preview">✕</button>
+      </div>
+      <img id="lightboxImg" src="" alt="Preview" class="lightbox-img" />
+    </div>
+  </div>
+
   <!-- Command Palette (Ctrl+K) -->
   <div class="modal-backdrop" id="cmdModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Command palette">
     <div class="glass cmd-box">
-      <input type="text" id="cmdInput" placeholder="Jump to section, project, or action (e.g. TalentSphere, Resume, Skills)..." autocomplete="off" />
+      <input type="text" id="cmdInput" placeholder="Jump to section, project, or action (e.g. TalentSphere, Resume, Certificates)..." autocomplete="off" />
       <div class="cmd-list" id="cmdList"></div>
     </div>
   </div>
@@ -722,7 +862,7 @@
     </div>
     <div class="ai-messages" id="aiMessages">
       <div class="ai-msg bot">
-        👋 Hi! Ask me anything about Harsh's <strong>projects</strong> (TalentSphere 2.0, AI Video Assistant, ML Lab), <strong>Aishwi Technologies internship</strong>, <strong>tech stack</strong>, or <strong>certifications</strong>.
+        👋 Hi! Ask me anything about Harsh's <strong>projects</strong> (TalentSphere 2.0, AI Video Assistant, ML Lab), <strong>Aishwi Technologies internship</strong>, <strong>tech stack</strong>, or <strong>certificates</strong>.
       </div>
     </div>
     <div class="ai-chips">

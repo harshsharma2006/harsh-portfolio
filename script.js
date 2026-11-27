@@ -49,6 +49,23 @@
     })
   );
 
+  // Subtle 3D tilt effect on desktop pointer devices (respects reduced motion)
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+  if (!reduceMotion && finePointer) {
+    document.querySelectorAll(".tilt-3d").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(900px) rotateX(${(-y * 4).toFixed(2)}deg) rotateY(${(x * 4).toFixed(2)}deg) translateY(-2px)`;
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+  }
+
   // Typewriter
   const roles = [
     "Data Science & AI/ML Builder",
@@ -77,12 +94,12 @@
   // Reveal observer
   const io = new IntersectionObserver(
     (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
-    { threshold: 0.08 }
+    { threshold: 0.06 }
   );
   document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
-  // Category filters (Skills, Projects, Certifications)
-  function wireFilter(attr, cardSelector, cardAttr) {
+  // Category filters
+  function wireFilter(attr, cardSelector, cardAttr, multiToken = false) {
     const pills = document.querySelectorAll(`[${attr}]`);
     const cards = document.querySelectorAll(cardSelector);
     pills.forEach((btn) => {
@@ -91,15 +108,38 @@
         btn.classList.add("active");
         const val = btn.getAttribute(attr);
         cards.forEach((c) => {
-          const match = val === "all" || c.getAttribute(cardAttr) === val;
+          const raw = (c.getAttribute(cardAttr) || "").split(/\s+/);
+          const match = val === "all" || (multiToken ? raw.includes(val) : c.getAttribute(cardAttr) === val);
           c.classList.toggle("hidden", !match);
+          if (match) c.classList.add("visible");
         });
       });
     });
   }
   wireFilter("data-skill-filter", ".skill-card", "data-skill-cat");
   wireFilter("data-proj-filter", ".proj-card", "data-proj-cat");
-  wireFilter("data-cert-filter", ".cert-card", "data-cert-cat");
+  wireFilter("data-cert-filter", ".cert-img-card, .cert-card", "data-cert-cat", true);
+
+  // Image & Certificate Lightbox
+  const imgLightbox = document.getElementById("imgLightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxCaption = document.getElementById("lightboxCaption");
+
+  document.querySelectorAll("[data-lightbox]").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.stopPropagation();
+      lightboxImg.src = el.getAttribute("data-lightbox");
+      lightboxCaption.textContent = el.getAttribute("data-caption") || "Preview";
+      imgLightbox.classList.add("open");
+      imgLightbox.setAttribute("aria-hidden", "false");
+    });
+  });
+  function closeLightbox() {
+    imgLightbox.classList.remove("open");
+    imgLightbox.setAttribute("aria-hidden", "true");
+  }
+  document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+  imgLightbox.addEventListener("click", (e) => { if (e.target === imgLightbox) closeLightbox(); });
 
   // Project Architecture Modals
   const MODAL_DATA = {
@@ -187,12 +227,12 @@
   const cmdList = document.getElementById("cmdList");
   const COMMANDS = [
     { label: "Jump to Projects", hint: "#projects", run: () => location.hash = "#projects" },
+    { label: "Jump to Certificate Proofs", hint: "#certifications", run: () => location.hash = "#certifications" },
     { label: "Open TalentSphere Enterprise 2.0 Live App", hint: "Streamlit", run: () => window.open("https://talentsphereenterprise20-hq239uebmxwggycjex9icv.streamlit.app/", "_blank") },
     { label: "Open AI Video Assistant Repo", hint: "GitHub", run: () => window.open("https://github.com/harshsharma2006/AI-Video-Assistant", "_blank") },
     { label: "Download 2026 Resume PDF", hint: "PDF", run: () => document.querySelector(".nav-resume").click() },
     { label: "Jump to Experience", hint: "#experience", run: () => location.hash = "#experience" },
     { label: "Jump to Technical Skills", hint: "#skills", run: () => location.hash = "#skills" },
-    { label: "Jump to Certifications", hint: "#certifications", run: () => location.hash = "#certifications" },
     { label: "Toggle Light / Dark Theme", hint: "Theme", run: () => themeToggle.click() },
     { label: "Open LinkedIn Profile", hint: "External", run: () => window.open("https://www.linkedin.com/in/harsh-sharma8377/", "_blank") },
   ];
@@ -227,10 +267,11 @@
     } else if (e.key === "Escape") {
       cmdModal.classList.remove("open");
       detailModal.classList.remove("open");
+      closeLightbox();
     }
   });
 
-  // Ask Harsh AI Assistant (Fixed intent priority + free-text support)
+  // Ask Harsh AI Assistant
   const aiFab = document.getElementById("aiFab");
   const aiPanel = document.getElementById("aiPanel");
   const aiMessages = document.getElementById("aiMessages");
@@ -249,7 +290,6 @@
 
   function answerQuery(raw) {
     const q = raw.toLowerCase();
-    // Specific intents checked BEFORE general bio intent (fixes live site's "your" -> "you" bug)
     if (q.includes("project") || q.includes("talentsphere") || q.includes("video") || q.includes("ml lab") || q.includes("built")) {
       return "Harsh's flagship projects:<br>1) <strong>TalentSphere Enterprise 2.0</strong> (Live on Streamlit): 28 SQLAlchemy models, 6-role RBAC, Scikit-learn TF-IDF ATS scoring, ReportLab PDFs, Docker &amp; 20 pytest tests.<br>2) <strong>AI Video Assistant</strong>: Whisper ASR + LangChain + ChromaDB + Mistral AI RAG Q&amp;A.<br>3) <strong>Machine Learning Lab</strong>: 11 end-to-end Scikit-learn pipelines.";
     }
@@ -259,8 +299,8 @@
     if (q.includes("skill") || q.includes("stack") || q.includes("tech") || q.includes("python") || q.includes("sql")) {
       return "Core stack: <strong>Python, SQL, C/C++</strong> · <strong>Pandas, NumPy, Scikit-learn, Matplotlib, Plotly</strong> · <strong>LangChain, RAG, Whisper, ChromaDB, Hugging Face, Mistral AI</strong> · <strong>Streamlit, SQLAlchemy, MySQL, PostgreSQL, Docker, pytest, Git</strong>.";
     }
-    if (q.includes("cert") || q.includes("nptel") || q.includes("cisco") || q.includes("ey")) {
-      return "Harsh holds <strong>18+ certifications</strong>, including <strong>NPTEL Data Analytics with Python (Elite, Jan–May 2026)</strong>, <strong>NPTEL Cloud Computing</strong>, <strong>EY &amp; Microsoft AI Skills Passport</strong>, <strong>Cisco Data Analytics Essentials</strong>, LinkedIn Learning (Advanced SQL, Advanced Python), and Infosys Springboard.";
+    if (q.includes("cert") || q.includes("nptel") || q.includes("cisco") || q.includes("ey") || q.includes("snowflake")) {
+      return "Harsh holds <strong>18+ certifications</strong>, including the <strong>Snowflake Generative AI Professional Certificate</strong> (Nov 2026), <strong>NPTEL Data Analytics with Python (Elite, Jan–May 2026)</strong>, <strong>NPTEL Cloud Computing</strong>, <strong>EY &amp; Microsoft AI Skills Passport</strong>, <strong>Cisco Data Analytics &amp; Cybersecurity</strong>, <strong>HackerRank Python (Basic)</strong>, and <strong>HP LIFE Data Science</strong>.";
     }
     if (q.includes("hire") || q.includes("contact") || q.includes("email") || q.includes("phone") || q.includes("resume")) {
       return "Harsh is actively seeking <strong>Data Science, Data Analyst, AI/ML, GenAI, and Python Developer internships</strong>.<br>📧 harshsharmashar8377@gmail.com<br>📞 +91 8377859493";
@@ -295,20 +335,21 @@
     pushAiTurn(val);
   });
 
-  // Subtle Neural Canvas Background (respects reduced motion)
+  // Multi-Color Neural Canvas Background
   const canvas = document.getElementById("neuralBg");
   const ctx = canvas.getContext("2d");
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let pts = [];
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    const count = Math.min(42, Math.floor((canvas.width * canvas.height) / 28000));
-    pts = Array.from({ length: count }, () => ({
+    const count = Math.min(44, Math.floor((canvas.width * canvas.height) / 26000));
+    const palette = ["#38bdf8", "#a855f7", "#34d399", "#ec4899"];
+    pts = Array.from({ length: count }, (_, idx) => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
+      vx: (Math.random() - 0.5) * 0.36,
+      vy: (Math.random() - 0.5) * 0.36,
+      color: palette[idx % palette.length],
     }));
   }
   resizeCanvas();
@@ -317,8 +358,7 @@
   function drawBg() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const isLight = html.getAttribute("data-theme") === "light";
-    ctx.fillStyle = isLight ? "rgba(37, 99, 235, 0.25)" : "rgba(56, 189, 248, 0.35)";
-    ctx.strokeStyle = isLight ? "rgba(37, 99, 235, 0.08)" : "rgba(56, 189, 248, 0.10)";
+    ctx.strokeStyle = isLight ? "rgba(37, 99, 235, 0.08)" : "rgba(129, 140, 248, 0.12)";
     for (let i = 0; i < pts.length; i++) {
       const p = pts[i];
       if (!reduceMotion) {
@@ -327,9 +367,12 @@
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
       }
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = isLight ? 0.35 : 0.45;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, 1.8, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, 1.9, 0, Math.PI * 2);
       ctx.fill();
+      ctx.globalAlpha = 1;
       for (let j = i + 1; j < pts.length; j++) {
         const q = pts[j];
         const d = Math.hypot(p.x - q.x, p.y - q.y);
