@@ -293,11 +293,11 @@
     if (q.includes("project") || q.includes("talentsphere") || q.includes("video") || q.includes("ml lab") || q.includes("built")) {
       return "Harsh's flagship projects:<br>1) <strong>TalentSphere Enterprise 2.0</strong> (Live on Streamlit): 28 SQLAlchemy models, 6-role RBAC, Scikit-learn TF-IDF ATS scoring, ReportLab PDFs, Docker &amp; 20 pytest tests.<br>2) <strong>AI Video Assistant</strong>: Whisper ASR + LangChain + ChromaDB + Mistral AI RAG Q&amp;A.<br>3) <strong>Machine Learning Lab</strong>: 11 end-to-end Scikit-learn pipelines.";
     }
-    if (q.includes("intern") || q.includes("aishwi") || q.includes("experience") || q.includes("work")) {
-      return "Harsh completed a 5-month <strong>Data Analyst Internship at Aishwi Technologies</strong> (Jul–Nov 2025), performing data cleaning, EDA, visualization, and reporting on production datasets. He also completed Cognifyz Python data analytics tasks and coordinates ICSsCT-2025 &amp; NSS initiatives.";
+    if (q.includes("intern") || q.includes("aishwi") || q.includes("oriva") || q.includes("experience") || q.includes("work")) {
+      return "Harsh has completed two Data Analytics internships: <strong>Oriva Lifesciences Pvt. Ltd.</strong> (Jun–Jul 2026, On-site: Python, SQL, Excel, Power BI reporting) and <strong>Aishwi Technologies</strong> (Jul–Nov 2025, Remote: EDA &amp; visualization on production datasets), plus Cognifyz analytics tasks and ICSsCT-2025 / NSS leadership.";
     }
-    if (q.includes("skill") || q.includes("stack") || q.includes("tech") || q.includes("python") || q.includes("sql")) {
-      return "Core stack: <strong>Python, SQL, C/C++</strong> · <strong>Pandas, NumPy, Scikit-learn, Matplotlib, Plotly</strong> · <strong>LangChain, RAG, Whisper, ChromaDB, Hugging Face, Mistral AI</strong> · <strong>Streamlit, SQLAlchemy, MySQL, PostgreSQL, Docker, pytest, Git</strong>.";
+    if (q.includes("skill") || q.includes("stack") || q.includes("tech") || q.includes("python") || q.includes("sql") || q.includes("power bi")) {
+      return "Core stack: <strong>Python, SQL, C/C++</strong> · <strong>Pandas, NumPy, Scikit-learn, Matplotlib, Plotly, Power BI</strong> · <strong>LangChain, RAG, Whisper, ChromaDB, Hugging Face, Mistral AI</strong> · <strong>Streamlit, SQLAlchemy, MySQL, PostgreSQL, Docker, pytest, Git</strong>.";
     }
     if (q.includes("cert") || q.includes("nptel") || q.includes("cisco") || q.includes("ey") || q.includes("snowflake")) {
       return "Harsh holds <strong>18+ certifications</strong>, including the <strong>Snowflake Generative AI Professional Certificate</strong> (Nov 2026), <strong>NPTEL Data Analytics with Python (Elite, Jan–May 2026)</strong>, <strong>NPTEL Cloud Computing</strong>, <strong>EY &amp; Microsoft AI Skills Passport</strong>, <strong>Cisco Data Analytics &amp; Cybersecurity</strong>, <strong>HackerRank Python (Basic)</strong>, and <strong>HP LIFE Data Science</strong>.";
